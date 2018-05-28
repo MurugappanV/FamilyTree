@@ -1,0 +1,54 @@
+# The following types define the data model of the example service
+# based on which the GraphQL API is generated
+
+type User @model {
+  id: ID! @isUnique
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  isDeleted: Boolean @defaultValue(value: "false")
+
+  name: String
+  photoUrl: String
+  email: String
+  dateOfBirth: DateTime
+  phoneNumber: String
+  address: String
+  firebaseUserId: String! @isUnique
+  gender: Gender
+
+  father: User @relation(name: "FatherChild")
+  child: [User!]! @relation(name: "FatherChild")
+  husband: [User!]! @relation(name: "HusbandWife")
+  wife: [User!]! @relation(name: "HusbandWife")
+  # Uncomment below - you can declare relations between models like this
+
+  # posts: [Post!]! @relation(name: "UserPosts")
+  families: [Family!]! @relation(name: "UserFamiliess")
+}
+
+type Family @model {
+  id: ID! @isUnique
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  isDeleted: Boolean @defaultValue(value: "false")
+
+  name: String!
+  photoUrl: String
+  users: [User!]! @relation(name: "UserFamiliess")
+}
+
+enum Gender {
+  MALE,
+  FEMALE,
+  OTHERS
+}
+
+# Uncomment the model below as well
+
+# type Post @model {
+#   id: ID! @isUnique
+#   title: String!
+#
+#   # Every relation also required a back-relation (to determine 1:1, 1:n or n:m)
+#   author: User! @relation(name: "UserPosts")
+# }

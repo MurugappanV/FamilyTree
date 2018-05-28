@@ -1,0 +1,3 @@
+targets:
+  prod: shared-ap-northeast-1/cjhqnh4n869vt0113z8kp646q
+  default: prod

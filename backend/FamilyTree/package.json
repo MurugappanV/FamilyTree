@@ -1,0 +1,10 @@
+{
+  "name": "FamilyTree",
+  "version": "1.0.0",
+  "description": "My Graphcool Service",
+  "dependencies": {
+    "firebase-admin": "^5.12.1",
+    "graphcool-lib": "^0.1.4",
+    "graphql-request": "^1.6.0"
+  }
+}
