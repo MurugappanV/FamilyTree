@@ -24,6 +24,7 @@ type User @model {
 
   # posts: [Post!]! @relation(name: "UserPosts")
   families: [Family!]! @relation(name: "UserFamiliess")
+  createdFamily: [Family!]! @relation(name: "AdminFamily")
 }
 
 type Family @model {
@@ -35,6 +36,7 @@ type Family @model {
   name: String!
   photoUrl: String
   users: [User!]! @relation(name: "UserFamiliess")
+  createBy: User @relation(name: "AdminFamily")
 }
 
 enum Gender {
