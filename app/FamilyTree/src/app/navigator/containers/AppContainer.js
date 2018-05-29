@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import { bindActionCreators } from "redux";
 import { StatusBar, View, Text, Image } from "react-native";
 import { basicStyles } from "../../../common/styles/styleSheet";
-// import BaseNavigator from "../components/BaseNavigator";
+import AppNavigator from "../components/AppNavigator";
 import { startUpDataActions } from "../actions";
 
 class AppContainer extends PureComponent {
@@ -13,6 +13,7 @@ class AppContainer extends PureComponent {
     }
 
     render() {
+        
         return <View style={basicStyles.deviceFullView}>
             <StatusBar
                 backgroundColor="rgba(0, 0, 0, 0.2)"
@@ -25,15 +26,15 @@ class AppContainer extends PureComponent {
             <Image style={[ basicStyles.deviceFullView, {position: 'absolute', tintColor: 'rgba(0, 0, 0, 0.5)'}]}
                 source={require('../../../../assert/images/pattern.png')}
             />
-            <View>
-                <Text style={{color: 'white'}}>Welcome</Text>
-                </View>
+            <AppNavigator {...this.props}/>
+            
         </View>        
     }    
 }
 
 function mapStateToProps(state) {
     return {
+        userId: state.userId
     }
 }
 
@@ -42,3 +43,8 @@ function mapDispatchToProps(dispatch) {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(AppContainer);
+
+// <BaseNavigator style={basicStyles.deviceFullView}/>
+// <View>
+//                 <Text style={{color: 'white'}}>Welcome</Text>
+//                 </View>

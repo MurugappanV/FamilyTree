@@ -1,13 +1,20 @@
 import React, {PureComponent} from "react";
 import { StackNavigator } from "react-navigation";
-import HomeNavigator from "../../home";
-import Login from "../../login";
-import AboutUs from "../../aboutUs";
-import UserDetails from "../../userDetail";
-import Confirmation from "../../confirmation";
+import Families from "../../families";
+// import Login from "../../login";
+// import AboutUs from "../../aboutUs";
+// import UserDetails from "../../userDetail";
+// import Confirmation from "../../confirmation";
 
 const BaseNavigator = StackNavigator({
-    Home: { screen: HomeNavigator }
+    Families: { screen: Families }
+}, {
+    cardStyle: { backgroundColor: "transperent" },
+    transitionConfig: () => ({
+        containerStyle: {
+        backgroundColor: 'transparent',
+        },
+    }),
 });
 
 const defaultGetStateForAction = BaseNavigator.router.getStateForAction;

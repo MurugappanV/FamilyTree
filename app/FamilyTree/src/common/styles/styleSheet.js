@@ -9,7 +9,8 @@ export const width25pc = fullWidth * 0.25;
 export const width40pc = fullWidth * 0.4;
 export const width20pc = fullWidth * 0.2;
 export const statusBarHeight = 23;
-export const headerHeight = 52;
+export const headerHeight = fullHeight * 0.06;
+export const headerImgHeight = headerHeight * 0.5;
 export const tabBarHeight = 50;
 export const tabFullHeight = fullHeight - headerHeight - statusBarHeight - tabBarHeight;
 
@@ -49,8 +50,8 @@ const sizes = StyleSheet.create({
         paddingTop: statusBarHeight
     },
     headerImage: {
-        height: 40,
-        width: 40
+        height: headerImgHeight,
+        width: headerImgHeight
     },
     tabBar: {
         height: tabBarHeight,
@@ -90,6 +91,9 @@ const sizes = StyleSheet.create({
 export const basicCompStyles = StyleSheet.create({
     bgBaseColor: {
         backgroundColor: colors.BG_BASE_COLOR
+    },
+    transColor: {
+        backgroundColor: 'rgba(0,0,0,0)'
     },
     bgDisableColor: {
         backgroundColor: colors.DISABLE_COLOR
@@ -230,7 +234,8 @@ export const compStyles = StyleSheet.create({
 
 export const basicStyles = {
     deviceFullView: [
-        sizes.fullViewSize
+        sizes.fullViewSize,
+        basicCompStyles.transColor
     ],
     deviceFullWidth: [
         sizes.fullDeviceWidth
@@ -362,7 +367,6 @@ export const basicStyles = {
         sizes.fullDeviceWidth
     ],
     tabContainer: [
-        basicCompStyles.bgBaseColorLight, 
         basicCompStyles.fullSize,
         basicCompStyles.flexColumnCC
     ],

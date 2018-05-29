@@ -1,4 +1,6 @@
 const DARK_BLUE = "#0295aa";
+const ROYAL_BLUE = "#1030AF";
+const LIGHTER_BLUE = "#AAC7FD";
 const LIGHT_BLUE = "#4acfd9";
 const DARKER_GREY = "#365558";
 const DARK_GREY = "#687f82";
@@ -11,10 +13,11 @@ const DARK_ORANGE = "#fd6a33";
 const ORANGE = "#ff8c29";
 const LIGHT_ORANGE = "#ffd1a9";
 const WHITE = "#ffffff";
+const WHITE50 = "#ffffff66";
 const BLACK = "#000000";
 
 
-export const BG_BASE_COLOR = DARK_BLUE;
+export const BG_BASE_COLOR = WHITE50;
 export const BG_BASE_COLOR_LIGHT = WHITER_GREY;
 export const BASE_SHADOW_COLOR = DARKER_GREY;
 export const HEADER_TEXT_COLOR = WHITE;

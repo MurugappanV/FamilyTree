@@ -4,7 +4,7 @@ import { AsyncStorage } from 'react-native'
 //import config from '../config.json';
 
 const networkInterface = createNetworkInterface({
-  uri: 'https://api.graph.cool/simple/v1/cjf6qzg652ivd0113qx2h0wdt',
+  uri: 'https://api.graph.cool/simple/v1/cjhqnh4n869vt0113z8kp646q',
 });
 
 networkInterface.use([{
