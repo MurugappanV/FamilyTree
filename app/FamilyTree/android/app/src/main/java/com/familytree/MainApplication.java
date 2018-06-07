@@ -3,7 +3,9 @@ package com.familytree;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.imagepicker.ImagePickerPackage;
 import io.invertase.firebase.auth.RNFirebaseAuthPackage;
+import io.invertase.firebase.storage.RNFirebaseStoragePackage;
 import org.devio.rn.splashscreen.SplashScreenReactPackage;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
@@ -26,9 +28,11 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new ImagePickerPackage(),
             new RNFirebasePackage(),
             new SplashScreenReactPackage(),
-          new RNFirebaseAuthPackage()
+          new RNFirebaseAuthPackage(),
+          new RNFirebaseStoragePackage()
       );
     }
 

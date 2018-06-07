@@ -7,6 +7,7 @@
 import React, { Component } from 'react';
 import BaseNavigator from './BaseNavigator';
 import Login from '../../login';
+import UserDetails from '../../userDetail';
 
 
 export default class App extends Component {
@@ -14,16 +15,23 @@ export default class App extends Component {
         
     }
 
-    renderPage = (userId) => {
+    renderPage = (userId, userDetails) => {
+        console.log("in usr id - ", userId)
         if(userId) {
-            return <BaseNavigator {...this.props}/>
+            console.log("in usr id - ", userDetails.name)
+            if(!!userDetails && !!userDetails.name) {
+                return <BaseNavigator {...this.props}/>
+            } else {
+                return <UserDetails {...this.props}/>
+            }
         } else {
             return <Login {...this.props}/>
         }
     }
 
     render() {
-        let {userId} = this.props
-        return this.renderPage(userId)
+        let {userId, userDetails} = this.props
+        console.log("in usr id 1 - ", userId)
+        return this.renderPage(userId, userDetails)
   }
 }

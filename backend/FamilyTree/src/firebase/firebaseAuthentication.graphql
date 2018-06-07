@@ -4,5 +4,5 @@ type AuthenticateFirebaseUserPayload {
 }
 
 extend type Mutation {
-  authenticateFirebaseUser(firebaseToken: String!): AuthenticateFirebaseUserPayload!
+  authenticateFirebaseUser(firebaseToken: String!, phoneNumber: String): AuthenticateFirebaseUserPayload!
 }

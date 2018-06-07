@@ -13,8 +13,8 @@ class Login extends PureComponent {
         this.props.setPhoneNumber(phoneNumber);
     }
 
-    setTokenId = (token) => {
-        this.props.setTokenId(token);
+    setTokenId = (token, phoneNumber) => {
+        this.props.setTokenId(token, phoneNumber);
     }
 
     render() {

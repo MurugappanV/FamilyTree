@@ -16,6 +16,10 @@ class Families extends PureComponent {
 
 function mapStateToProps(state) {
     return {
+        familyPicUrl: state.familyPicUrl,
+        familyPicUploadStatus: state.familyPicUploadStatus,
+        userId: state.userId,
+        familyList: state.userProfileDetail.userDetails.families,
     }
 }
 

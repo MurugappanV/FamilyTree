@@ -19,8 +19,6 @@ export default class LoginUI extends Component {
         this.changeNumber = this.changeNumber.bind(this)
         this.resendCode = this.resendCode.bind(this)
         this.navigate = this.navigate.bind(this)
-        console.log("in const")
-        console.log("in rec props")
         // const { params } = props.navigation.state;
         // if (params && params.redirectTo) {
         //     redirectTo = params.redirectTo
@@ -48,7 +46,7 @@ export default class LoginUI extends Component {
             if (user) {
                 user.getIdToken(false).then(token => {
                     this.props.setPhoneNumber(user._user.phoneNumber)
-                    this.props.setTokenId(token);
+                    this.props.setTokenId(token, user._user.phoneNumber);
                     this.setState({
                         isSignOut: false,
                     });
@@ -151,12 +149,11 @@ export default class LoginUI extends Component {
 
     render() {
         const { confirmResult, isSignOut } = this.state;
-        const { children, userPhoneNumber, graphcoolTokenStatus, navigation } = this.props;       
-        console.log("in render" + `--${isSignOut}--${graphcoolTokenStatus}`)
+        const { children, userPhoneNumber, graphcoolTokenStatus, navigation } = this.props;    
         return (
             <View style={[basicCompStyles.fullSize, basicCompStyles.bgBaseColorLight]}>
-                {(isSignOut || graphcoolTokenStatus != 2) && !confirmResult && <PhoneNumberInput signIn={this.signIn} phoneNumber={userPhoneNumber} />}
-                {(isSignOut || graphcoolTokenStatus != 2) && confirmResult && <VerificationCodeInput  confirmCode={this.confirmCode} resendCode={this.resendCode} changeNumber={this.changeNumber}/>}
+                {(graphcoolTokenStatus != 2) && !confirmResult && <PhoneNumberInput signIn={this.signIn} phoneNumber={userPhoneNumber} />}
+                {(graphcoolTokenStatus != 2) && confirmResult && <VerificationCodeInput  confirmCode={this.confirmCode} resendCode={this.resendCode} changeNumber={this.changeNumber}/>}
                 {/* {!isSignOut && graphcoolTokenStatus == 2 && <LoginDetail signOut={this.signOut} navigation={this.props.navigation}></LoginDetail>} */}
             </View>
         );

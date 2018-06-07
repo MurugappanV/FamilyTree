@@ -1,9 +1,9 @@
-// import * as types from '../../common/redux/types';
-// import client from '../../common/redux/apollo/client';
-// import { authenticateUser } from '../graphql/quries';
-// import { AsyncStorage } from 'react-native'
+import * as types from '../../common/redux/types';
+import client from '../../common/redux/apollo/client';
+import {  } from '../graphql/queries';
 
-export function setPhoneNumber(phoneNumber) {
+export function uploadingImageUrl() {
     return (dispatch, getState) => {
+        dispatch({type: types.UPLOADING_FAMILY_IMG_PIC});
     }
 }

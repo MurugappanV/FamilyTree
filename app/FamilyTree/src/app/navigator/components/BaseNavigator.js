@@ -1,15 +1,30 @@
 import React, {PureComponent} from "react";
 import { StackNavigator } from "react-navigation";
+import {View} from 'react-native';
 import Families from "../../families";
+import AddFamily from "../../addFamily";
+import Family from "../../family";
+import Header from "../../family/common/header";
 // import Login from "../../login";
 // import AboutUs from "../../aboutUs";
 // import UserDetails from "../../userDetail";
 // import Confirmation from "../../confirmation";
 
 const BaseNavigator = StackNavigator({
-    Families: { screen: Families }
+    Families: { 
+                screen: Families 
+            },
+    AddFamily: { 
+                screen: AddFamily 
+            },
+    Family: {
+                screen: Family, 
+                navigationOptions: { 
+                    header: ({navigation}) => <Header navigation={navigation}></Header>
+                }
+            }
 }, {
-    cardStyle: { backgroundColor: "transperent" },
+    cardStyle: { backgroundColor: "transparent" },
     transitionConfig: () => ({
         containerStyle: {
         backgroundColor: 'transparent',
@@ -39,3 +54,8 @@ export default BaseNavigator;
 // AboutUs: { screen: AboutUs},
 // Details: { screen: UserDetails},
 // Confirmation: {screen: Confirmation}
+
+
+// <View style={{height: 100}}></View>
+
+// navigation={navigation} title={"name"} familyImg={"photo"}

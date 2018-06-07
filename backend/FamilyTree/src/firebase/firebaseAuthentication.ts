@@ -21,6 +21,7 @@ interface User {
 
 interface EventData {
   firebaseToken: string
+  phoneNumber: string
 }
 
 export default async (event: FunctionEvent<EventData>) => {
@@ -30,7 +31,7 @@ export default async (event: FunctionEvent<EventData>) => {
     const graphcool = fromEvent(event)
     const api = graphcool.api('simple/v1')
 
-    const { firebaseToken } = event.data
+    const { firebaseToken, phoneNumber } = event.data
 
     // call firebase API to obtain user data
     const firebaseUser = await getFirebaseUser(firebaseToken)
@@ -43,7 +44,7 @@ export default async (event: FunctionEvent<EventData>) => {
     let userId: string | null = null
 
     if (!user) {
-      userId = await createGraphcoolUser(api, firebaseUser)
+      userId = await createGraphcoolUser(api, firebaseUser, phoneNumber)
     } else {
       userId = user.id
     }
@@ -99,11 +100,12 @@ async function getGraphcoolUser(api: GraphQLClient, firebaseUserId: string): Pro
   return api.request<{ User }>(query, variables)
 }
 
-async function createGraphcoolUser(api: GraphQLClient, firebaseUserId: string): Promise<string> {
+async function createGraphcoolUser(api: GraphQLClient, firebaseUserId: string, phoneNumber: string): Promise<string> {
   const mutation = `
-    mutation createUser($firebaseUserId: String!) {
+    mutation createUser($firebaseUserId: String!, $phoneNumber: String!) {
       createUser(
-        firebaseUserId: $firebaseUserId
+        firebaseUserId: $firebaseUserId,
+        phoneNumber: $phoneNumber
       ) {
         id
       }
@@ -112,6 +114,7 @@ async function createGraphcoolUser(api: GraphQLClient, firebaseUserId: string): 
 
   const variables = {
     firebaseUserId,
+    phoneNumber
   }
 
   return api.request<{ createUser: User }>(mutation, variables)

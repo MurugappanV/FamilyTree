@@ -28,3 +28,33 @@ export const isGraphcoolTokenObtained = createReducer(0, {
         return 0;
     },
 });
+
+const initialUserDetail = {
+    userDetailLoadingStatus: 0,
+    userDetails: {}
+}
+
+export const userProfileDetail = createReducer(initialUserDetail, {
+    [types.USER_DETAILS_LOADING](state, action) {
+         return {
+             ...state,
+             userDetailLoadingStatus: GeneralConstants.LOADING,
+         }
+    },
+    [types.USER_DETAILS_LOADED](state, action) {
+        return {
+            ...state,
+            userDetails: action.data,
+            userDetailLoadingStatus: GeneralConstants.LOADED,
+        };
+    },
+    [types.USER_DETAILS_ERROR](state, action) {
+        return {
+            ...state,
+            userDetailLoadingStatus: GeneralConstants.ERROR,
+        };
+    },
+    [types.CLEAR_USER_DETAILS](state, action) {
+        return initialUserDetail;
+    },
+});
