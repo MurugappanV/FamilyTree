@@ -39,7 +39,6 @@ class Profile extends PureComponent {
     render() {
         const {navigation} = this.props;
         return <View>
-            <Header navigation={navigation} title={navigation.state.params.name} familyImg={navigation.state.params.photoUrl}/>
             {this.renderItem()}
         </View>;
     }

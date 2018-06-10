@@ -14,13 +14,13 @@ class HeaderUI extends PureComponent {
 
     render() {
         let {navigate} = this.props.navigation
-        return <View style={[basicStyles.homeHeaderContainer, {backgroundColor: 'red'}]}>
+        return <View style={[basicStyles.homeHeaderContainer, {backgroundColor: 'white'}]}>
             <View style={basicStyles.homeHeaderInnerContainer}>
                 <TouchableOpacity onPress={() => {}}>
                     {this.renderUserImage(this.props.familyImg)}
                 </TouchableOpacity>
                 <TouchableOpacity style={basicStyles.headerTitle} onPress={() => {}}>
-                    <Text style={basicStyles.textWhiteSmall}>{this.props.title}</Text>
+                    <Text >{this.props.title}</Text>
                 </TouchableOpacity>
             </View>
         </View>

@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "524347838142-lepe207orp5jirgb55b8b7c3ohl1df39.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.familytree",
+            "certificate_hash": "e7cbc270da82f380efab406a98ef0b62e4972cbc"
+          }
+        },
+        {
           "client_id": "524347838142-u95crunl2fseudod6nhq3gpn0mpr74ks.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
@@ -46,6 +54,13 @@
             {
               "client_id": "524347838142-1cj38d3mnkoq2lu7obcein4s0amsj70t.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "524347838142-5re558cpg1kpgeus9papaeh9hd3s6gcc.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "org.reactjs.native.example.FamilyTree"
+              }
             }
           ]
         },

@@ -20,7 +20,7 @@ const BaseNavigator = StackNavigator({
     Family: {
                 screen: Family, 
                 navigationOptions: { 
-                    header: ({navigation}) => <Header navigation={navigation}></Header>
+                    header: ({navigation}) => <Header navigation={navigation}/>
                 }
             }
 }, {

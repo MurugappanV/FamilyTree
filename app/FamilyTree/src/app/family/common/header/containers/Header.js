@@ -1,14 +1,13 @@
 import React, {PureComponent} from "react";
 import {connect} from "react-redux";
 import HeaderUI from '../components/HeaderUI';
-import {View} from 'react-native';
+import {View, Text} from 'react-native';
 
 class Header extends PureComponent {
     
     render() {
-        console.log("header props - " , this.props)
-        const title = "Family";
-        const familyImg = null;
+        let title = "Family";
+        let familyImg = null;
         if(!!this.props.navigation.state.routes) {
             const { params }  = this.props.navigation.state.routes.find(function(element) {
                 return element.routeName == "Family";
@@ -16,13 +15,13 @@ class Header extends PureComponent {
             title = params.name;
             familyImg = params.photoUrl;
         }
-        
-        return <View style={{backgroundColor: "red", height: 100}}>
-
-        </View>
+        return <HeaderUI {...this.props} title={title} familyImg={familyImg}/>
     }
 }
 
 export default Header
 
 //<HeaderUI title={title} familyImg={familyImg} navigation={this.props.navigation}/>
+
+//<Header navigation={navigation} title={navigation.state.params.name} familyImg={navigation.state.params.photoUrl}/>
+            
