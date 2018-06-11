@@ -4,11 +4,13 @@ import * as loginReducer from '../../../login/reducer/LoginReducer';
 import * as userDetReducer from '../../../userDetail/reducer/userDetReducer';
 import * as familyReducer from '../../../families/reducer/familyReducer';
 import * as addFamilyReducer from '../../../addFamily/reducers/addFamilyReducer';
+import * as familyDetReducer from '../../../family/reducer/familyReducer';
 
 export default combineReducers(Object.assign(
     handleException,
     loginReducer,
     userDetReducer,
     familyReducer,
-    addFamilyReducer
+    addFamilyReducer,
+    familyDetReducer
 ));

@@ -18,7 +18,7 @@ export default class App extends Component {
     renderPage = (userId, userDetails) => {
         console.log("in usr id - ", userId)
         if(userId) {
-            console.log("in usr id - ", userDetails.name)
+            
             if(!!userDetails && !!userDetails.name) {
                 return <BaseNavigator {...this.props}/>
             } else {

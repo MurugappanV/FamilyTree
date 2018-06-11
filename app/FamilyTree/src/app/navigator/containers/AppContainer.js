@@ -14,7 +14,7 @@ class AppContainer extends PureComponent {
 
     render() {
         
-        console.log("in usr id 99 - ")
+        
         return <View style={basicStyles.deviceFullView}>
             <StatusBar
                 backgroundColor="rgba(0, 0, 0, 0.2)"

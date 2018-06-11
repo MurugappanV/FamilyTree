@@ -2,44 +2,26 @@ import React, {PureComponent} from "react";
 import {View} from "react-native";
 import {connect} from 'react-redux';
 import { bindActionCreators } from "redux";
-import EmptyUI from "../components/EmptyUI";
 import Header from "../../common/header";
+import {familyDataActions} from "../../actions";
+import ListUI from "../components/ListUI";
 
-class Profile extends PureComponent {
+class List extends PureComponent {
 
     constructor(props) {
         super(props)
-        this.renderItem = this.renderItem.bind(this)
-        if(props.userId != null && props.userDetailLoadingStatus == 0) {
-            props.getUserById(props.userId)
+        console.log("in list", props)
+        if(!!props.navigation.state.params) {
+            const { params }  = props.navigation.state;
+            console.log("in id - " , params.id)
+            props.getFamilyDetails(params.id)
         }
-    }
-
-    componentWillReceiveProps(nextProps) {
-        if(nextProps.userId != null && nextProps.userDetailLoadingStatus == 0) {
-            nextProps.getUserById(nextProps.userId)
-        }
-    }
-
-    renderItem = () => {
-        if(this.props.userId == null) {
-            return <EmptyUI navigation = {this.props.navigation} redirectPage={"Login"}/>
-        } else if(this.props.userDetails) {
-            // if(this.props.userDetails.phoneNo != null) {
-            //     return <ProfileUI {...this.props}/>
-            // } else {
-                return <EmptyUI navigation = {this.props.navigation} redirectPage={"Details"}/>
-            // }
-        } else {
-            return <View></View>
-        }
+        
     }
 
     render() {
         const {navigation} = this.props;
-        return <View>
-            {this.renderItem()}
-        </View>
+        return <ListUI {...this.props}/>
     }
 }
 
@@ -48,11 +30,13 @@ function mapStateToProps(state) {
         userId: state.userId,
         userDetailLoadingStatus: state.userProfileDetail.userDetailLoadingStatus,
         userDetails: state.userProfileDetail.userDetails,
+        familyDetailStatus: state.familyDetail.familyDetailsStatus,
+        familyDetails: state.familyDetail.familyDetails
     }
 }
 
-// function mapDispatchToProps(dispatch) {
-//     return bindActionCreators(userDetDataActions, dispatch);
-// }
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators(familyDataActions, dispatch);
+}
 
-export default connect(mapStateToProps)(Profile);
+export default connect(mapStateToProps, mapDispatchToProps)(List);
