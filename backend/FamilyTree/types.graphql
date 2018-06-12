@@ -11,9 +11,9 @@ type User @model {
   photoUrl: String
   email: String
   dateOfBirth: DateTime
-  phoneNumber: String
+  phoneNumber: String! @isUnique
   address: String
-  firebaseUserId: String! @isUnique
+  firebaseUserId: String
   gender: Gender
 
   father: User @relation(name: "FatherChild")
