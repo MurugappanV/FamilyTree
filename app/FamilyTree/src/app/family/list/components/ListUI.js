@@ -23,9 +23,9 @@ class ListUI extends PureComponent {
             <TouchableOpacity style={[basicCompStyles.bgBaseColor, basicCompStyles.defaultPadding, basicCompStyles.defaultMarginTB, {height: 40, borderRadius: 20 }]} onPress={() => {props.navigation.navigate("AddFamily")}} >
                 <Text style={[basicStyles.textWhiteSmall, basicCompStyles.alignTextCenter]}>{"ADD NEW MEMBER"}</Text>
             </TouchableOpacity> 
-            <TouchableOpacity onPress={() => {props.navigation.navigate("AddFamily")}} > 
+            {/* <TouchableOpacity onPress={() => {props.navigation.navigate("AddFamily")}} > 
                 <Text style={[basicStyles.textSmallerLink, basicCompStyles.aliginSelfC, {paddingBottom: 10}]}>{"Back"}</Text>
-            </TouchableOpacity> 
+            </TouchableOpacity>  */}
         </View>
     }
 

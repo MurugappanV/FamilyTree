@@ -8,6 +8,7 @@ export const familyDetail = gql`
                 id
                 name
                 photoUrl
+                dateOfBirth
             }
         }
     }

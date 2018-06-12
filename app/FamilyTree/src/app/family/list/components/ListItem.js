@@ -3,31 +3,36 @@ import {View, Image, Text, TouchableOpacity} from 'react-native';
 import { basicStyles, basicCompStyles } from "../../../../common/styles/styleSheet";
 import *  as generalConstants from '../../../../common/constants/generalConstants';
 import colors from "../../../../common/constants/colors";
+import { getAge } from "../../../../common/utils/dateUtils";
 
 class ListItem extends PureComponent {
 
     renderUserImage = (imageUrl) => {
         if(imageUrl && imageUrl.length > 0) {
-            return <Image style={[ basicCompStyles.defaultPadding, {borderRadius: 10, width: 100, height: 100}]} source={{uri : imageUrl}}/>
+            return <Image style={[ {borderRadius: 25, marginLeft: 5, width: 50, height: 50}]} source={{uri : imageUrl}}/>
         } else {
-            return <Image style={[ basicCompStyles.defaultPadding, {borderRadius: 10, width: 100, height: 100}]} source={require('../../../../../assert/images/family.png')}/>
+            return <Image style={[ {borderRadius: 25, width: 50, height: 50}]} source={require('../../../../../assert/images/family.png')}/>
         }
     }
 
     render() {
         const {item, navigation} = this.props;
         const name = item.name.toLowerCase().replace(/(^|\s)\S/g, l => l.toUpperCase());
+        const age = getAge(item.dateOfBirth)
         console.log("hhh---- ", item.name + "" + name);
         return <View>
-            <TouchableOpacity onPress={() => {navigation.navigate("Family", {id: item.id, name: name, photoUrl: item.photoUrl})}}>
-                <View style={[ basicCompStyles.flexColumnCN, {height: 100, marginBottom: 20}]}>
-                    <View style={[basicCompStyles.flexColumnCC, {backgroundColor: '#ffffffcc', borderRadius: 10, elevation: 10, marginLeft: 60, paddingLeft: 50, paddingTop: 10, paddingBottom: 10,  alignSelf: 'stretch'}]}>
-                        <Text ellipsizeMode={'tail'} numberOfLines={1} style={[basicStyles.textBigSimple]}>{name}</Text>
-                        {/* <Text ellipsizeMode={'tail'} numberOfLines={1} style={[basicStyles.textSmallerLink]}>{ item._usersMeta.count + " Members" }</Text> */}
-                    </View>
-                    <View style={{position: 'absolute',elevation: 20}}>
+            <TouchableOpacity onPress={() => {}}>
+                <View style={[ basicCompStyles.flexRowNC, basicCompStyles.defaultPadding, {backgroundColor: '#ffffff40', borderRadius: 10,  alignSelf: 'stretch'}]}>
+                    <View>
                         {this.renderUserImage(item.photoUrl)}
                     </View>
+                    {/* <View style={[basicCompStyles.flexColumnCC, ]}> */}
+                    <View style={basicCompStyles.flexColumnCN}>
+                        <Text ellipsizeMode={'tail'} numberOfLines={1} style={[basicStyles.textBigSimple, {paddingLeft: 15, color: '#e1f5febb'}]}>{name}</Text>
+                        <Text ellipsizeMode={'tail'} numberOfLines={1} style={[ {paddingLeft: 15, color: '#b3e5fcbb'}]}>{`Age : ${age}`}</Text>
+                    </View>
+                        {/* <Text ellipsizeMode={'tail'} numberOfLines={1} style={[basicStyles.textSmallerLink]}>{ item._usersMeta.count + " Members" }</Text> */}
+                    {/* </View> */}
                 </View>
             </TouchableOpacity>
         </View>
