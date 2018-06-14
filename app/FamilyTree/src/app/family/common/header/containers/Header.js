@@ -8,12 +8,13 @@ class Header extends PureComponent {
     render() {
         let title = "Family";
         let familyImg = null;
-        if(!!this.props.navigation.state.routes) {
-            const { params }  = this.props.navigation.state.routes.find(function(element) {
-                return element.routeName == "Family";
-              });
-            title = params.name;
-            familyImg = params.photoUrl;
+        if(!!this.props.navigation.state) {
+            const {params}  = this.props.navigation.state
+
+                title = params.name;
+                familyImg = params.photoUrl;
+
+            
         }
         return <HeaderUI {...this.props} title={title} familyImg={familyImg}/>
     }

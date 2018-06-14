@@ -4,28 +4,31 @@ import { basicStyles, basicCompStyles } from "../../../../common/styles/styleShe
 import * as generalConstants from "../../../../common/constants/generalConstants";
 import ListItem from "./ListItem";
 import colors from "../../../../common/constants/colors";
-
+import Header from "../../common/header";
 
 class ListUI extends PureComponent {
 
     renderList = (props) => {
-        return <View style={[basicCompStyles.defaultPadding, {flex: 1}]}>
-            <View style={{flex: 1}}>
-                <FlatList 
-                    key={"memberList"}
-                    listKey={"memberList"}
-                    data={props.familyDetails.users}
-                    keyExtractor={(item, index) => item.id}
-                    renderItem={({item}) => <ListItem item={item} navigation={props.navigation}/>}
-                    horizontal={false}
-                />
+        return <View  style={{flex: 1}}>
+            <Header navigation={props.navigation}/>
+            <View style={[basicCompStyles.defaultPadding, {flex: 1}]}>
+                <View style={{flex: 1}}>
+                    <FlatList 
+                        key={"memberList"}
+                        listKey={"memberList"}
+                        data={props.familyDetails.users}
+                        keyExtractor={(item, index) => item.id}
+                        renderItem={({item}) => <ListItem item={item} navigation={props.navigation}/>}
+                        horizontal={false}
+                    />
+                </View>
+                <TouchableOpacity style={[basicCompStyles.bgBaseColor, basicCompStyles.defaultPadding, basicCompStyles.defaultMarginTB, {height: 40, borderRadius: 20 }]} onPress={() => {props.navigation.navigate("AddMember", {familyId: props.familyId})}} >
+                    <Text style={[basicStyles.textWhiteSmall, basicCompStyles.alignTextCenter]}>{"ADD NEW MEMBER"}</Text>
+                </TouchableOpacity> 
+                <TouchableOpacity onPress={() => {props.navigation.goBack()}} > 
+                    <Text style={[basicStyles.textSmallerLink, basicCompStyles.aliginSelfC, {paddingBottom: 10}]}>{"Back"}</Text>
+                </TouchableOpacity> 
             </View>
-            <TouchableOpacity style={[basicCompStyles.bgBaseColor, basicCompStyles.defaultPadding, basicCompStyles.defaultMarginTB, {height: 40, borderRadius: 20 }]} onPress={() => {props.navigation.navigate("AddFamily")}} >
-                <Text style={[basicStyles.textWhiteSmall, basicCompStyles.alignTextCenter]}>{"ADD NEW MEMBER"}</Text>
-            </TouchableOpacity> 
-            {/* <TouchableOpacity onPress={() => {props.navigation.navigate("AddFamily")}} > 
-                <Text style={[basicStyles.textSmallerLink, basicCompStyles.aliginSelfC, {paddingBottom: 10}]}>{"Back"}</Text>
-            </TouchableOpacity>  */}
         </View>
     }
 
@@ -41,7 +44,7 @@ class ListUI extends PureComponent {
     }
 
     render() {
-        return <View style={[{flex: 1}]}>
+        return <View style={[basicStyles.deviceFullView,{flex: 1}]}>
             {this.renderPage(this.props)}
         </View>
     }

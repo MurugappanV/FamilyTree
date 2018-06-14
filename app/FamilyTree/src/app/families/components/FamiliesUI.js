@@ -15,9 +15,10 @@ class FamiliesUI extends PureComponent {
                     <FlatList 
                         key={"family"}
                         listKey={"family"}
+                        numColumns={2}
                         data={this.props.familyList}
                         keyExtractor={(item, index) => item.id}
-                        renderItem={({item}) => <Family item={item} navigation={this.props.navigation}/>}
+                        renderItem={({item, index}) => <Family item={item} index={index} navigation={this.props.navigation}/>}
                         horizontal={false}
                     />
                 </View>

@@ -5,6 +5,8 @@ import Families from "../../families";
 import AddFamily from "../../addFamily";
 import Family from "../../family";
 import Header from "../../family/common/header";
+import AddMember from "../../addMember";
+import List from "../../family/list";
 // import Login from "../../login";
 // import AboutUs from "../../aboutUs";
 // import UserDetails from "../../userDetail";
@@ -12,17 +14,20 @@ import Header from "../../family/common/header";
 
 const BaseNavigator = StackNavigator({
     Families: { 
-                screen: Families 
-            },
+        screen: Families 
+    },
     AddFamily: { 
-                screen: AddFamily 
-            },
+        screen: AddFamily 
+    },
     Family: {
-                screen: Family, 
-                navigationOptions: { 
-                    header: ({navigation}) => <Header navigation={navigation}/>
-                }
-            }
+        screen: List, 
+        // navigationOptions: { 
+        //     header: ({navigation}) => <Header navigation={navigation}/>
+        // }
+    },
+    AddMember: {
+        screen: AddMember
+    }
 }, {
     cardStyle: { backgroundColor: "transparent" },
     transitionConfig: () => ({

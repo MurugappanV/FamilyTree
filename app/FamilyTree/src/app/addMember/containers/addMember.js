@@ -17,6 +17,7 @@ class AddMember extends PureComponent {
         // if(props.userDetails && props.userDetails.photoUrl != null) {
         //     this.props.setProfilePicUrl(props.userDetails.photoUrl)
         // }
+        console.log("add memb props - ", props)
         
     }
 
@@ -37,12 +38,18 @@ class AddMember extends PureComponent {
     }
 
     addMember = (phoneNumber, name, email, dob, address, gender) => {
-        this.props.addUser(phoneNumber, name, email, this.props.profilePicUrl, dob, address, gender, this.props.familyId)
+        let familyId;
+        if(!!this.props.navigation.state.params) {
+            const { params }  = this.props.navigation.state;
+            console.log("famly id - " , params.familyId)
+            familyId = params.familyId
+        }
+        this.props.addUser(phoneNumber, name, email, this.props.profilePicUrl, dob, address, gender, familyId)
     }
 
     render() {
         // const {profilePicUrl, profilePicStatus, setProfilePicUrl, uploadingImageUrl} = this.props;
-        return <UserDetailUI {...this.props } addMember={this.addMember}/>
+        return <AddMemberUI {...this.props } addMember={this.addMember}/>
     }
 }
 

@@ -34,7 +34,7 @@ export function uploadingImageUrl() {
 
 export function addUser(phoneNumber, name, email, photoUrl, dob, address, gender, familiesIds) {
     return (dispatch, getState) => {
-        // console.log(`${userId}----${name}----${email}----${photoUrl}----${phoneNumber}----${dob}`)
+        console.log(`${familiesIds}----${name}----${email}----${photoUrl}----${phoneNumber}----${dob}`)
         dispatch({type: types.UPLOADING_ADD_MEM});
         client.mutate({
             mutation: createUser,

@@ -7,21 +7,26 @@ import {familyDataActions} from "../../actions";
 import ListUI from "../components/ListUI";
 
 class List extends PureComponent {
+    static navigationOptions =  { 
+        header: null
+    }
 
     constructor(props) {
         super(props)
         console.log("in list", props)
+        let familyId;
         if(!!props.navigation.state.params) {
             const { params }  = props.navigation.state;
             console.log("in id - " , params.id)
             props.getFamilyDetails(params.id)
+            familyId = params.id
         }
-        
+        this.state = {familyId: familyId}
     }
 
     render() {
         const {navigation} = this.props;
-        return <ListUI {...this.props}/>
+        return <ListUI {...this.props} familyId={this.state.familyId}/>
     }
 }
 

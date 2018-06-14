@@ -20,8 +20,7 @@ class ListItem extends PureComponent {
         const name = item.name.toLowerCase().replace(/(^|\s)\S/g, l => l.toUpperCase());
         const age = getAge(item.dateOfBirth)
         console.log("hhh---- ", item.name + "" + name);
-        return <View>
-            <TouchableOpacity onPress={() => {}}>
+        return <TouchableOpacity onPress={() => {}} style={{marginBottom: 10}}>
                 <View style={[ basicCompStyles.flexRowNC, basicCompStyles.defaultPadding, {backgroundColor: '#ffffff40', borderRadius: 10,  alignSelf: 'stretch'}]}>
                     <View>
                         {this.renderUserImage(item.photoUrl)}
@@ -35,7 +34,6 @@ class ListItem extends PureComponent {
                     {/* </View> */}
                 </View>
             </TouchableOpacity>
-        </View>
     }
 }
 

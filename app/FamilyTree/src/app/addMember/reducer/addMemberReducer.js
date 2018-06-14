@@ -33,21 +33,21 @@ export const addMemDet = createReducer(initialAddMemDetail, {
          return {
             ...state,
              addMemMsg: null,
-             addMemLoadingStatus: GeneralConstants.LOADING,
+             addMemLoadingStatus: generalConstants.LOADING,
          }
     },
     [types.UPLOADED_ADD_MEM](state, action) {
         return {
             ...state,
             addMemMsg: action.data,
-            addMemLoadingStatus: GeneralConstants.LOADED,
+            addMemLoadingStatus: generalConstants.LOADED,
         };
     },
     [types.ERROR_ADD_MEM](state, action) {
         return {
             ...state,
             addMemMsg: action.data,
-            addMemLoadingStatus: GeneralConstants.ERROR,
+            addMemLoadingStatus: generalConstants.ERROR,
         };
     },
     [types.CLEAR_ADD_MEM](state, action) {
