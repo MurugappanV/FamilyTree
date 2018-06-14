@@ -37,7 +37,7 @@ export default async (event: FunctionEvent<EventData>) => {
     const firebaseUser = await getFirebaseUser(firebaseToken)
     
     // get graphcool user by firebase id
-    const user: User = await getGraphcoolUser(api, firebaseUser)
+    const user: User = await getGraphcoolUser(api, phoneNumber)
       .then(r => r.User)
 
     // check if graphcool user exists, and create new one if not
@@ -84,17 +84,17 @@ async function getFirebaseUser(firebaseToken: string): Promise<string> {
 
 
 
-async function getGraphcoolUser(api: GraphQLClient, firebaseUserId: string): Promise<{ User }> {
+async function getGraphcoolUser(api: GraphQLClient, phoneNumber: string): Promise<{ User }> {
   const query = `
-    query getUser($firebaseUserId: String!) {
-      User(firebaseUserId: $firebaseUserId) {
+    query getUser($phoneNumber: String!) {
+      User(phoneNumber: $phoneNumber) {
         id
       }
     }
   `
 
   const variables = {
-    firebaseUserId,
+    phoneNumber,
   }
 
   return api.request<{ User }>(query, variables)
