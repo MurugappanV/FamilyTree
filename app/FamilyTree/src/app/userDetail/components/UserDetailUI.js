@@ -119,7 +119,7 @@ export default class UserDetailUI extends PureComponent {
             {/* <TouchableOpacity onPress={() => {}}>
                 <Image style={[basicStyles.bigImage, basicCompStyles.aliginSelfC, basicCompStyles.smallSpacingMarginT, {borderRadius: width25pc}]} source={require('../../../../assets/images/profile.png')}/>
             </TouchableOpacity> */}
-            <ScrollView style={{height: 300}} ref="scroll">
+            <ScrollView style={basicCompStyles.fullSize} ref="scroll">
                 {this.renderImage(profilePicStatus, profilePicUrl)}
                 <Text style={[basicStyles.textSmaller, basicCompStyles.smallSpacingMarginT]}>{"User name"}</Text>
                 <TextInput

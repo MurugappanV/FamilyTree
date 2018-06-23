@@ -1,18 +1,43 @@
 import React, {PureComponent} from "react";
 import {View, Image, Text, TouchableOpacity, FlatList, ActivityIndicator} from 'react-native';
-import { basicStyles, basicCompStyles } from "../../../../common/styles/styleSheet";
+import { basicStyles, basicCompStyles, fullWidth } from "../../../../common/styles/styleSheet";
 import * as generalConstants from "../../../../common/constants/generalConstants";
 import ListItem from "./ListItem";
 import colors from "../../../../common/constants/colors";
 import Header from "../../common/header";
+import Carousel from 'react-native-snap-carousel';
 
 class ListUI extends PureComponent {
 
+    _renderItem ({item, index}) {
+        return (
+            <View style={[basicCompStyles.flexRowSaC, basicCompStyles.defaultPadding, {height: 100, backgroundColor: "#ffffffcc", borderRadius: 10}]}>
+                <Image style={[ { width: 50, height: 50}]} source={item.imgSource}/>
+                <View>
+                    <Text style={basicCompStyles.alignTextCenter}>{ item.count }</Text>
+                    <Text >{ item.label }</Text>
+                </View>
+            </View>
+        );
+    }
+
     renderList = (props) => {
-        return <View  style={{flex: 1}}>
+        return <View  style={basicStyles.deviceFullView}>
             <Header navigation={props.navigation}/>
-            <View style={[basicCompStyles.defaultPadding, {flex: 1}]}>
-                <View style={{flex: 1}}>
+            <Carousel
+                ref={(c) => { this._carousel = c; }}
+                data={props.familyStatisticData}
+                renderItem={this._renderItem}
+                sliderWidth={fullWidth}
+                itemWidth={fullWidth - 160}
+                contentContainerCustomStyle={{height: 100}}
+                firstItem={1}
+                inactiveSlideScale={0.8}
+                containerCustomStyle={{paddingTop: 10, paddingBottom: 10 }}
+            />
+            <View style={{flex: 1000}}>
+                
+                <View style={[basicCompStyles.defaultPadding, {flex: 1}]}>
                     <FlatList 
                         key={"memberList"}
                         listKey={"memberList"}

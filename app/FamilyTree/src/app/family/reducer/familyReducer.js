@@ -4,7 +4,8 @@ import *  as generalConstants from '../../../common/constants/generalConstants';
 
 const initialFamilyDetails = {
     familyDetailsStatus: 0,
-    familyDetails: null
+    familyDetails: null,
+    familyStatisticData: []
 }
 
 export const familyDetail = createReducer(initialFamilyDetails, {
@@ -35,20 +36,25 @@ export const familyDetail = createReducer(initialFamilyDetails, {
 
 function getFamilyStatisticData(family) {
     return [{
-            label: "Members",
-            count: family.totalCount.count
+            label: family.totalCount.count > 1 ? "Members" : "Member",
+            count: family.totalCount.count,
+            imgSource: require('../../../../assert/images/totalFamily.png')
         },{
-            label: "Male",
-            count: family.maleCount.count
-        },{
-            label: "Female",
-            count: family.femaleCount.count
+            label: family.unmarriedCount.count > 1 ? "Youngsters" : "Youngster",
+            count: family.unmarriedCount.count,
+            imgSource: require('../../../../assert/images/youngsters.png')
         },{
             label: "Married",
-            count: family.marriedCount.count
+            count: family.marriedCount.count,
+            imgSource: require('../../../../assert/images/married.png')
         },{
-            label: "Youngsters",
-            count: family.unmarriedCount.count
+            label: "Female",
+            count: family.femaleCount.count,
+            imgSource: require('../../../../assert/images/female.png')
+        },{
+            label: "Male",
+            count: family.maleCount.count,
+            imgSource: require('../../../../assert/images/male.png')
         }
     ]
 }

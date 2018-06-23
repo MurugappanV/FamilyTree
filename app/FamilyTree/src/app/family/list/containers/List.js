@@ -36,7 +36,8 @@ function mapStateToProps(state) {
         userDetailLoadingStatus: state.userProfileDetail.userDetailLoadingStatus,
         userDetails: state.userProfileDetail.userDetails,
         familyDetailStatus: state.familyDetail.familyDetailsStatus,
-        familyDetails: state.familyDetail.familyDetails
+        familyDetails: state.familyDetail.familyDetails,
+        familyStatisticData: state.familyDetail.familyStatisticData
     }
 }
 

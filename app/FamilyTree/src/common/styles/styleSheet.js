@@ -151,6 +151,11 @@ export const basicCompStyles = StyleSheet.create({
         flexDirection: 'row', 
         alignItems: 'center'
     },
+    flexRowSaC: {
+        flexDirection: 'row',
+        justifyContent: 'space-around', 
+        alignItems: 'center'
+    },
     flexRowSaN: {
         flexDirection: 'row',
         justifyContent: 'space-around',
