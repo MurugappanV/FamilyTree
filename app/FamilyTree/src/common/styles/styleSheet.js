@@ -92,6 +92,9 @@ export const basicCompStyles = StyleSheet.create({
     bgBaseColor: {
         backgroundColor: colors.BG_BASE_COLOR
     },
+    bgDarkColor: {
+        backgroundColor: colors.BG_DARK_COLOR
+    },
     transColor: {
         backgroundColor: 'rgba(0,0,0,0)'
     },

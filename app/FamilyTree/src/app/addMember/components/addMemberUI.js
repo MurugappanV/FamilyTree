@@ -246,11 +246,11 @@ export default class AddMemberUI extends PureComponent {
                     placeholderTextColor={colors.PLACEHOLDER_COLOR} 
                 />
             </ScrollView>
-            <TouchableOpacity style={[basicCompStyles.bgBaseColor, basicCompStyles.defaultPadding, basicCompStyles.defaultMarginTB, basicCompStyles.spacingMarginT, {height: 40, borderRadius: 20 }]} onPress={this.saveManualEntry} >
+            <TouchableOpacity style={[basicCompStyles.bgDarkColor, basicCompStyles.defaultPadding, basicCompStyles.defaultMarginTB, basicCompStyles.spacingMarginT, {height: 40, borderRadius: 20 }]} onPress={this.saveManualEntry} >
                 <Text style={[basicStyles.textWhiteSmall, basicCompStyles.alignTextCenter]}>{"Add member"}</Text>
             </TouchableOpacity> 
-            <TouchableOpacity onPress={this.signOut} > 
-                <Text style={[basicStyles.textSmallerLink, basicCompStyles.aliginSelfC, {paddingBottom: 10}]}>{"Sign Out"}</Text>
+            <TouchableOpacity onPress={() => this.props.navigation.goBack()} > 
+                <Text style={[basicStyles.textSmallerLink, basicCompStyles.aliginSelfC, {paddingBottom: 10}]}>{"Back"}</Text>
             </TouchableOpacity> 
         </View>
     }

@@ -16,7 +16,6 @@ export function clearTokenId() {
         dispatch({type: types.GRAPHCOOL_AUTH_TOKEN_CLEAR});
         dispatch({type: types.CLEAR_USER_ID});
         dispatch({type: types.CLEAR_USER_DETAILS})
-        dispatch({type: types.CLEAR_PRESCRIPTION_LIST})
     }
 }
 
@@ -44,7 +43,7 @@ export function setTokenId(token, phoneNumber) {
     }
 } 
 
-export function getUserById(dispatch, userId) {
+export const getUserById = (dispatch, userId) => {
     dispatch({type: types.USER_DETAILS_LOADING});
     client.query({
         query: userByIdQuery,
@@ -59,4 +58,23 @@ export function getUserById(dispatch, userId) {
     }).catch( (exception) => {
         dispatch({ type: types.EXCEPTION, exception: exception});
     });
+}
+
+export const getUserUsingId = (userId) => {
+    return (dispatch, getState) => {
+        dispatch({type: types.USER_DETAILS_LOADING});
+        client.query({
+            query: userByIdQuery,
+            variables: {id: userId}
+        }).then((resp) => {
+            if (resp.data) {
+                dispatch({type: types.USER_DETAILS_LOADED, data: resp.data.User});
+            }
+            if(resp.errors) {
+                dispatch({ type: types.USER_DETAILS_ERROR, errors: resp.errors});
+            }
+        }).catch( (exception) => {
+            dispatch({ type: types.EXCEPTION, exception: exception});
+        });
+    }
 }

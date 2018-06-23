@@ -70,7 +70,7 @@ class AddFamilyUI extends PureComponent {
                     value={this.state.name}
                 />
             </ScrollView>
-            <TouchableOpacity style={[basicCompStyles.bgBaseColor, basicCompStyles.defaultPadding, basicCompStyles.defaultMarginTB, basicCompStyles.spacingMarginT, {height: 40, borderRadius: 20 }]} onPress={this.saveManualEntry} >
+            <TouchableOpacity style={[basicCompStyles.bgDarkColor, basicCompStyles.defaultPadding, basicCompStyles.defaultMarginTB, basicCompStyles.spacingMarginT, {height: 40, borderRadius: 20 }]} onPress={this.saveManualEntry} >
                 <Text style={[basicStyles.textWhiteSmall, basicCompStyles.alignTextCenter]}>{"Save"}</Text>
             </TouchableOpacity> 
         </View>

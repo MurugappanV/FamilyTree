@@ -14,10 +14,13 @@ import List from "../../family/list";
 
 const BaseNavigator = StackNavigator({
     Families: { 
-        screen: Families 
+        screen: Families , 
+        // navigationOptions: { 
+        //     header: null
+        // }
     },
     AddFamily: { 
-        screen: AddFamily 
+        screen: AddFamily
     },
     Family: {
         screen: List, 
@@ -52,8 +55,14 @@ BaseNavigator.router.getStateForAction = (action, state) => {
     return defaultGetStateForAction(action, state);
 };
 
-export default BaseNavigator;
 
+
+export default class navigator extends PureComponent {
+    render() {
+        console.log("props nav ", this.props)
+        return <BaseNavigator screenProps={this.props}/>;
+    }
+}
 
 // Login: { screen: Login },
 // AboutUs: { screen: AboutUs},

@@ -105,7 +105,7 @@ export default class UserDetailUI extends PureComponent {
             `Do you want to Sign out ?`,
             [
               {text: 'No', onPress: () => {}},
-              {text: 'Yes', onPress: () => {}},
+              {text: 'Yes', onPress: () => {this.props.signOut()}},
             ],
             { cancelable: true }
         )
@@ -113,13 +113,13 @@ export default class UserDetailUI extends PureComponent {
 
     render() {
         const { signOut, saveUserDetails, profilePicStatus,  profilePicUrl} = this.props;
-        return <View style={[basicCompStyles.fullSize, basicCompStyles.bgBaseColorLight, basicCompStyles.defaultPadding]}>
+        return <View style={[basicStyles.deviceFullView, basicCompStyles.bgBaseColorLight, basicCompStyles.defaultPadding]}>
             <Text style={[basicStyles.textSmaller, basicCompStyles.alignTextCenter, basicCompStyles.smallSpacingMarginT]}>{"Congrats, Logged in successfully!!!"}</Text>
             <Text style={basicStyles.textBig}>{"User details"}</Text>
             {/* <TouchableOpacity onPress={() => {}}>
                 <Image style={[basicStyles.bigImage, basicCompStyles.aliginSelfC, basicCompStyles.smallSpacingMarginT, {borderRadius: width25pc}]} source={require('../../../../assets/images/profile.png')}/>
             </TouchableOpacity> */}
-            <ScrollView style={basicCompStyles.fullSize} ref="scroll">
+            <ScrollView style={{height: 300}} ref="scroll">
                 {this.renderImage(profilePicStatus, profilePicUrl)}
                 <Text style={[basicStyles.textSmaller, basicCompStyles.smallSpacingMarginT]}>{"User name"}</Text>
                 <TextInput
@@ -227,7 +227,7 @@ export default class UserDetailUI extends PureComponent {
                     placeholderTextColor={colors.PLACEHOLDER_COLOR} 
                 />
             </ScrollView>
-            <TouchableOpacity style={[basicCompStyles.bgBaseColor, basicCompStyles.defaultPadding, basicCompStyles.defaultMarginTB, basicCompStyles.spacingMarginT, {height: 40, borderRadius: 20 }]} onPress={this.saveManualEntry} >
+            <TouchableOpacity style={[basicCompStyles.bgDarkColor, basicCompStyles.defaultPadding, basicCompStyles.defaultMarginTB, basicCompStyles.spacingMarginT, {height: 40, borderRadius: 20 }]} onPress={this.saveManualEntry} >
                 <Text style={[basicStyles.textWhiteSmall, basicCompStyles.alignTextCenter]}>{"Save"}</Text>
             </TouchableOpacity> 
             <TouchableOpacity onPress={this.signOut} > 

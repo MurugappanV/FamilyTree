@@ -19,3 +19,18 @@ export function setUserIdStartUp() {
     }
 }
 
+export function setPhoneNumber(phoneNumber) {
+    return (dispatch, getState) => {
+        dispatch({type: types.SET_PHONE_NUMBER, data: phoneNumber});
+    }
+}
+
+export function clearTokenId() {
+    return (dispatch, getState) => {
+        AsyncStorage.removeItem('token');
+        AsyncStorage.removeItem('userId');
+        dispatch({type: types.GRAPHCOOL_AUTH_TOKEN_CLEAR});
+        dispatch({type: types.CLEAR_USER_ID});
+        dispatch({type: types.CLEAR_USER_DETAILS})
+    }
+}

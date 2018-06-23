@@ -10,3 +10,33 @@ export const family = createReducer(null, {
         return null;
    },
 });
+
+const initialFamilyDetail = {
+    familyDetailLoadingStatus: 0,
+    familyList: []
+}
+
+export const familyList = createReducer(initialFamilyDetail, {
+    [types.FAMILY_DETAILS_LOADING](state, action) {
+         return {
+             ...state,
+             familyDetailLoadingStatus: generalConstants.LOADING,
+         }
+    },
+    [types.FAMILY_DETAILS_LOADED](state, action) {
+        return {
+            ...state,
+            familyList: action.data,
+            familyDetailLoadingStatus: generalConstants.LOADED,
+        };
+    },
+    [types.FAMILY_DETAILS_ERROR](state, action) {
+        return {
+            ...state,
+            familyDetailLoadingStatus: generalConstants.ERROR,
+        };
+    },
+    [types.CLEAR_FAMILY_DETAILS](state, action) {
+        return initialFamilyDetail;
+    },
+});

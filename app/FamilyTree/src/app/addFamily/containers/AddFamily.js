@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import { bindActionCreators } from "redux";
 import AddFamilyUI from "../components/AddFamilyUI";
 import {addFamilyDataActions} from "../actions";
+import {familyDataActions} from "../../families/actions";
 
 class AddFamily extends PureComponent {
     static navigationOptions =  { 
@@ -11,10 +12,15 @@ class AddFamily extends PureComponent {
 
     saveFamilyDetails = (name) => {
         this.props.saveFamilyDetails(this.props.userId, name, this.props.familyPicUrl)
+        this.props.getFamilyByUserId(this.props.userId)
         this.props.navigation.dispatch({
             routeName: 'Families',
             type: 'GoToRoute',
         })
+    }
+
+    componentWillUnmount() {
+        this.props.clearFamilyPicUrl()
     }
 
     render() {
@@ -32,7 +38,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators(addFamilyDataActions, dispatch);
+    return bindActionCreators(Object.assign({}, familyDataActions, addFamilyDataActions), dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddFamily);

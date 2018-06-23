@@ -9,8 +9,14 @@ class Families extends PureComponent {
         header: null
     }
 
+    constructor(props) {
+        super(props)
+        props.getFamilyByUserId(props.userId)
+    }
+
     render() {
-        return <FamiliesUI {...this.props}/>
+        console.log("props ", this.props)
+        return <FamiliesUI {...this.props} signOut={this.props.screenProps.signOut}/>
     }
 }
 
@@ -19,7 +25,8 @@ function mapStateToProps(state) {
         familyPicUrl: state.familyPicUrl,
         familyPicUploadStatus: state.familyPicUploadStatus,
         userId: state.userId,
-        familyList: state.userProfileDetail.userDetails.families,
+        familyListStatus: state.familyList.familyDetailLoadingStatus,
+        familyList: state.familyList.familyList,
     }
 }
 

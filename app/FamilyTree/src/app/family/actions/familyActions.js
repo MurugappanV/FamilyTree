@@ -7,7 +7,7 @@ export function getFamilyDetails(id) {
         dispatch({type: types.GET_FAMILY_LOADING});
         client.query({
             query: familyDetail,
-            variables: {id: id}
+            variables: {id: id, metaId: null}
         }).then((resp) => {
             if (resp.data) {
                 dispatch({type: types.GET_FAMILY_LOADED, data: resp.data.Family});

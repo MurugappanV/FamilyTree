@@ -31,7 +31,7 @@ export default class PhoneNumberInput extends PureComponent {
                     />
                     <Text style={[basicStyles.textSmaller, {paddingLeft: 5}]}>We require phonenumber for customer communication and identification</Text>
                 </View>
-                <TouchableOpacity style={[basicCompStyles.bgBaseColor, basicCompStyles.defaultPadding, basicCompStyles.defaultMarginTB, {height: 40, borderRadius: 20 }]} onPress={() => this.props.signIn(this.state.phoneNumber)}>
+                <TouchableOpacity style={[basicCompStyles.bgDarkColor, basicCompStyles.defaultPadding, basicCompStyles.defaultMarginTB, {height: 40, borderRadius: 20 }]} onPress={() => this.props.signIn(this.state.phoneNumber)}>
                     <Text style={[basicStyles.textWhiteSmall, basicCompStyles.alignTextCenter]}>Send OTP</Text>
                 </TouchableOpacity>
             </KeyboardAvoidingView>

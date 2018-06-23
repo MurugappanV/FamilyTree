@@ -18,6 +18,7 @@ export const familyDetail = createReducer(initialFamilyDetails, {
         return {
             ...state,
             familyDetails: action.data,
+            familyStatisticData: getFamilyStatisticData(action.data),
             familyDetailsStatus: generalConstants.LOADED,
         };
     },
@@ -31,3 +32,25 @@ export const familyDetail = createReducer(initialFamilyDetails, {
         return initialFamilyDetails;
     },
 });
+
+function getFamilyStatisticData(family) {
+    return [{
+            label: "Members",
+            count: family.totalCount.count
+        },{
+            label: "Male",
+            count: family.maleCount.count
+        },{
+            label: "Female",
+            count: family.femaleCount.count
+        },{
+            label: "Married",
+            count: family.marriedCount.count
+        },{
+            label: "Youngsters",
+            count: family.unmarriedCount.count
+        }
+    ]
+}
+
+

@@ -37,7 +37,7 @@ class ListUI extends PureComponent {
             console.log("det - ", props.familyDetails)
             return this.renderList(props)
         } else {
-            return <View style={[basicCompStyles.defaultPadding, {flex: 1}]}>
+            return <View style={[basicCompStyles.defaultPadding, basicCompStyles.flexColumnCC, {flex: 1}]}>
                 <ActivityIndicator size="large" color={colors.PROGRESS_BAR_COLOR} />
             </View>
         }

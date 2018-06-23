@@ -18,6 +18,7 @@ const BLACK = "#000000";
 
 
 export const BG_BASE_COLOR = WHITE50;
+export const BG_DARK_COLOR = DARK_BLUE;
 export const BG_BASE_COLOR_LIGHT = WHITER_GREY;
 export const BASE_SHADOW_COLOR = DARKER_GREY;
 export const HEADER_TEXT_COLOR = WHITE;

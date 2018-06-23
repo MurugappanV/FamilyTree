@@ -33,7 +33,7 @@ export default class VerificationCodeInput extends PureComponent {
                 <TouchableOpacity onPress={this.props.resendCode} >
                     <Text style={[basicStyles.textSmallerLink, basicCompStyles.alignTextRight]}>Not received your OTP ?</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={[basicCompStyles.bgBaseColor, basicCompStyles.defaultPadding, basicCompStyles.defaultMarginTB, basicCompStyles.spacingMarginT, {height: 40, borderRadius: 20 }]} onPress={() => this.props.confirmCode(this.state.codeInput)} >
+                <TouchableOpacity style={[basicCompStyles.bgDarkColor, basicCompStyles.defaultPadding, basicCompStyles.defaultMarginTB, basicCompStyles.spacingMarginT, {height: 40, borderRadius: 20 }]} onPress={() => this.props.confirmCode(this.state.codeInput)} >
                     <Text style={[basicStyles.textWhiteSmall, basicCompStyles.alignTextCenter]}>Confirm OTP</Text>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={this.props.changeNumber} >
