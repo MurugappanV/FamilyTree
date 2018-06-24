@@ -8,6 +8,16 @@ import Header from "../../common/header";
 import Carousel from 'react-native-snap-carousel';
 
 class ListUI extends PureComponent {
+    constructor(props) {
+        super(props)
+        this.state = {refreshing : false}
+    }
+
+    componentWillUpdate(nextProps) {
+        if(nextProps.familyDetailStatus == generalConstants.LOADED) {
+            this.setState({refreshing: false})
+        }
+    }
 
     _renderItem ({item, index}) {
         return (
@@ -45,6 +55,11 @@ class ListUI extends PureComponent {
                         keyExtractor={(item, index) => item.id}
                         renderItem={({item}) => <ListItem item={item} navigation={props.navigation}/>}
                         horizontal={false}
+                        refreshing={this.state.refreshing}
+                        onRefresh={() => {
+                            this.props.getFamilyDetails(props.familyId)
+                            this.setState({refreshing: true})
+                        }}
                     />
                 </View>
                 <TouchableOpacity style={[basicCompStyles.bgBaseColor, basicCompStyles.defaultPadding, basicCompStyles.defaultMarginTB, {height: 40, borderRadius: 20 }]} onPress={() => {props.navigation.navigate("AddMember", {familyId: props.familyId})}} >
@@ -58,13 +73,13 @@ class ListUI extends PureComponent {
     }
 
     renderPage = (props) => {
-        if(props.familyDetailStatus == generalConstants.LOADED && props.familyDetails != null) {
-            console.log("det - ", props.familyDetails)
-            return this.renderList(props)
-        } else {
+        if(props.familyDetails == null) {
             return <View style={[basicCompStyles.defaultPadding, basicCompStyles.flexColumnCC, {flex: 1}]}>
                 <ActivityIndicator size="large" color={colors.PROGRESS_BAR_COLOR} />
             </View>
+        } else {
+            console.log("det - ", props.familyDetails)
+            return this.renderList(props)
         }
     }
 

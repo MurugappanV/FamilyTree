@@ -5,6 +5,7 @@ import { familyDetail } from '../graphql/quries';
 export function getFamilyDetails(id) {
     return (dispatch, getState) => {
         dispatch({type: types.GET_FAMILY_LOADING});
+        client.resetStore()
         client.query({
             query: familyDetail,
             variables: {id: id, metaId: null}

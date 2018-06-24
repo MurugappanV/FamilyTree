@@ -1,6 +1,7 @@
 import React, {PureComponent} from "react";
 import {View, Image, Text, TouchableOpacity, FlatList, ActivityIndicator} from 'react-native';
 import { basicStyles, basicCompStyles } from "../../../common/styles/styleSheet";
+import * as generalConstants from "../../../common/constants/generalConstants";
 import Headers from "../../common/components/Headers";
 import Family from "./Family";
 import colors from "../../../common/constants/colors";
@@ -12,7 +13,7 @@ class FamiliesUI extends PureComponent {
     }
 
     componentDidUpdate(prevProps) {
-        if(this.props.familyList != prevProps.familyList) {
+        if(this.props.familyListStatus == generalConstants.LOADED) {
             this.setState({refreshing: false})
         }
     }

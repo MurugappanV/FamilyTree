@@ -25,7 +25,6 @@ class List extends PureComponent {
     }
 
     render() {
-        const {navigation} = this.props;
         return <ListUI {...this.props} familyId={this.state.familyId}/>
     }
 }

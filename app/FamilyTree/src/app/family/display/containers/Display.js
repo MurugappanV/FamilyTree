@@ -7,48 +7,29 @@ import { userDetDataActions } from "../../../userDetail/actions";
 import Header from "../../common/header";
 
 class Profile extends PureComponent {
+    static navigationOptions =  { 
+        header: null
+    }
 
     constructor(props) {
         super(props)
-        this.renderItem = this.renderItem.bind(this)
-        if(props.userId != null && props.userDetailLoadingStatus == 0) {
-            props.getUserById(props.userId)
+        let userId;
+        if(!!props.navigation.state.params) {
+            const { params }  = props.navigation.state;
+            // props.getFamilyDetails(params.userId)
+            userId = params.userId
         }
-    }
-
-    componentWillReceiveProps(nextProps) {
-        if(nextProps.userId != null && nextProps.userDetailLoadingStatus == 0) {
-            nextProps.getUserById(nextProps.userId)
-        }
-    }
-
-    renderItem = () => {
-        if(this.props.userId == null) {
-            return <EmptyUI navigation = {this.props.navigation} redirectPage={"Login"}/>
-        } else if(this.props.userDetails) {
-            // if(this.props.userDetails.phoneNo != null) {
-            //     return <ProfileUI {...this.props}/>
-            // } else {
-                return <EmptyUI navigation = {this.props.navigation} redirectPage={"Details"}/>
-            // }
-        } else {
-            return <View></View>
-        }
+        this.state = {userId: userId}
     }
 
     render() {
-        const {navigation} = this.props;
-        return <View>
-            {this.renderItem()}
-        </View>;
+        return <View></View>
     }
 }
 
 function mapStateToProps(state) {
     return {
-        userId: state.userId,
-        userDetailLoadingStatus: state.userProfileDetail.userDetailLoadingStatus,
-        userDetails: state.userProfileDetail.userDetails,
+
     }
 }
 
