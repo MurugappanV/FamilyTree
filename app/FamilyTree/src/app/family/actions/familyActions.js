@@ -1,6 +1,6 @@
 import * as types from '../../common/redux/types';
 import client from '../../common/redux/apollo/client';
-import { familyDetail } from '../graphql/quries';
+import { familyDetail, userCloseRelation } from '../graphql/quries';
 
 export function getFamilyDetails(id) {
     return (dispatch, getState) => {
@@ -15,6 +15,25 @@ export function getFamilyDetails(id) {
             }
             if(resp.errors) {
                  dispatch({ type: types.GET_FAMILY_ERROR, errors: resp.errors});
+            }
+        }).catch( (exception) => {
+            dispatch({ type: types.EXCEPTION, exception: exception});
+        });
+    }
+}
+
+export function getUserCloseRelation(id) {
+    return (dispatch, getState) => {
+        dispatch({type: types.GET_USER_RELATION_LOADING});
+        client.query({
+            query: userCloseRelation,
+            variables: {id: id}
+        }).then((resp) => {
+            if (resp.data) {
+                dispatch({type: types.GET_USER_RELATION_LOADED, data: resp.data.User});
+            }
+            if(resp.errors) {
+                 dispatch({ type: types.GET_USER_RELATION_ERROR, errors: resp.errors});
             }
         }).catch( (exception) => {
             dispatch({ type: types.EXCEPTION, exception: exception});

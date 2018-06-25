@@ -28,6 +28,55 @@ export const familyDetail = gql`
         }
     }
 `
+export const userCloseRelation = gql`
+    query getUserCloseRelation($id: ID!) {
+        User(id: $id) {
+            id
+            name
+            gender
+            dateOfBirth
+            email
+            phoneNumber
+            photoUrl
+            father {
+                id
+                name
+                gender
+                photoUrl
+                wife {
+                    id
+                    name
+                    gender
+                    photoUrl
+                }
+                child {
+                    id
+                    name
+                    gender
+                    photoUrl
+                }
+            }
+            husband {
+                id
+                name
+                gender
+                photoUrl
+            }
+            wife {
+                id
+                name
+                gender
+                photoUrl
+            }
+            child {
+                id
+                name
+                gender
+                photoUrl
+            }
+        }
+    }
+`
 
 
 
