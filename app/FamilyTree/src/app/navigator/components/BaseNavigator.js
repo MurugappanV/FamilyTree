@@ -7,6 +7,7 @@ import Family from "../../family";
 import Header from "../../family/common/header";
 import AddMember from "../../addMember";
 import List from "../../family/list";
+import Display from "../../family/display";
 // import Login from "../../login";
 // import AboutUs from "../../aboutUs";
 // import UserDetails from "../../userDetail";
@@ -27,6 +28,9 @@ const BaseNavigator = StackNavigator({
         // navigationOptions: { 
         //     header: ({navigation}) => <Header navigation={navigation}/>
         // }
+    },
+    Relation: {
+        screen: Display,
     },
     AddMember: {
         screen: AddMember

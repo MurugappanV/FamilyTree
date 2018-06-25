@@ -2,9 +2,8 @@ import React, {PureComponent} from "react";
 import {View} from "react-native";
 import {connect} from 'react-redux';
 import { bindActionCreators } from "redux";
-import EmptyUI from "../components/EmptyUI";
-import { userDetDataActions } from "../../../userDetail/actions";
-import Header from "../../common/header";
+import { familyDataActions } from "../../actions";
+import FamilyDisplay from "../components/FamilyDisplay";
 
 class Profile extends PureComponent {
     static navigationOptions =  { 
@@ -16,25 +15,26 @@ class Profile extends PureComponent {
         let userId;
         if(!!props.navigation.state.params) {
             const { params }  = props.navigation.state;
-            // props.getFamilyDetails(params.userId)
+            props.getUserCloseRelation(params.userId)
             userId = params.userId
         }
         this.state = {userId: userId}
     }
 
     render() {
-        return <View></View>
+        return <FamilyDisplay {...this.props}/>
     }
 }
 
 function mapStateToProps(state) {
     return {
-
+        userCloseRelation: state.userCloseRelation.userCloseRelation,
+        userCloseRelationStatus: state.userCloseRelation.userCloseRelationStatus
     }
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators(userDetDataActions, dispatch);
+    return bindActionCreators(familyDataActions, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Profile);

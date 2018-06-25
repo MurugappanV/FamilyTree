@@ -65,26 +65,26 @@ const initialUserCloseRelation = {
 }
 
 export const userCloseRelation = createReducer(initialUserCloseRelation, {
-    [types.GET_FAMILY_LOADING](state, action) {
+    [types.GET_USER_RELATION_LOADING](state, action) {
          return {
              ...state,
              userCloseRelationStatus: generalConstants.LOADING,
          }
     },
-    [types.GET_FAMILY_LOADED](state, action) {
+    [types.GET_USER_RELATION_LOADED](state, action) {
         return {
             ...state,
             userCloseRelation: getUserCloseRelation(action.data),
             userCloseRelationStatus: generalConstants.LOADED,
         };
     },
-    [types.GET_FAMILY_ERROR](state, action) {
+    [types.GET_USER_RELATION_ERROR](state, action) {
         return {
             ...state,
             userCloseRelationStatus: generalConstants.ERROR,
         };
     },
-    [types.CLEAR_GET_FAMILY](state, action) {
+    [types.CLEAR_GET_USER_RELATION](state, action) {
         return initialUserCloseRelation;
     },
 });
@@ -141,12 +141,14 @@ function getUserCloseRelation(userRelation) {
             }
         }),
         siblings: !userRelation.father ? [] : userRelation.father.child.map(child => {
-            return {
-                id: child.id,
-                name: child.name,
-                gender: child.gender,
-                photoUrl: child.photoUrl,
+            if(child.id != userRelation.id) {
+                return {
+                    id: child.id,
+                    name: child.name,
+                    gender: child.gender,
+                    photoUrl: child.photoUrl,
+                }
             }
-        }),
+        }).filter(child => !!child),
     }
 }
