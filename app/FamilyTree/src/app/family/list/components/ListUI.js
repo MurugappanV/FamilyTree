@@ -10,7 +10,14 @@ import Carousel from 'react-native-snap-carousel';
 class ListUI extends PureComponent {
     constructor(props) {
         super(props)
-        this.state = {refreshing : false}
+        let title = "Family";
+        let familyImg = null;
+        if(!!this.props.navigation.state) {
+            const {params}  = this.props.navigation.state
+            title = params.name;
+            familyImg = params.photoUrl;
+        }
+        this.state = {refreshing : false, title : title, familyImg : familyImg}
     }
 
     componentWillUpdate(nextProps) {
@@ -19,7 +26,7 @@ class ListUI extends PureComponent {
         }
     }
 
-    _renderItem ({item, index}) {
+    renderItem ({item, index}) {
         return (
             <View style={[basicCompStyles.flexRowSaC, basicCompStyles.defaultPadding, {height: 100, backgroundColor: "#ffffffcc", borderRadius: 10}]}>
                 <Image style={[ { width: 50, height: 50}]} source={item.imgSource}/>
@@ -33,11 +40,11 @@ class ListUI extends PureComponent {
 
     renderList = (props) => {
         return <View  style={basicStyles.deviceFullView}>
-            <Header navigation={props.navigation}/>
+            <Header navigation={props.navigation} title={this.state.title} familyImg={this.state.familyImg}/>
             <Carousel
                 ref={(c) => { this._carousel = c; }}
                 data={props.familyStatisticData}
-                renderItem={this._renderItem}
+                renderItem={this.renderItem}
                 sliderWidth={fullWidth}
                 itemWidth={fullWidth - 160}
                 contentContainerCustomStyle={{height: 100}}

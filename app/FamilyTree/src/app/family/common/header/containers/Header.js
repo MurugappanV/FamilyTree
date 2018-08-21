@@ -6,17 +6,8 @@ import {View, Text} from 'react-native';
 class Header extends PureComponent {
     
     render() {
-        let title = "Family";
-        let familyImg = null;
-        if(!!this.props.navigation.state) {
-            const {params}  = this.props.navigation.state
-
-                title = params.name;
-                familyImg = params.photoUrl;
-
-            
-        }
-        return <HeaderUI {...this.props} title={title} familyImg={familyImg}/>
+        
+        return <HeaderUI {...this.props} />
     }
 }
 

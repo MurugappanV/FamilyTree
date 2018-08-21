@@ -24,14 +24,14 @@ class Family extends PureComponent {
         const {item, index, navigation} = this.props;
         const name = item.name.toLowerCase().replace(/(^|\s)\S/g, l => l.toUpperCase());
         
-        return <View style={[{backgroundColor: '#ffffff40', alignSelf: 'stretch', borderRadius: 10, padding: 10, width: this.itemWidth}, index%2==0 ? { marginRight: 5 } : { marginLeft: 5 }, index/2>=1 ? { marginTop: 10 } : { marginTop: 0 }]}>
+        return <View style={[{backgroundColor: colors.BG_BASE_COLOR_LIGHT, alignSelf: 'stretch', borderRadius: 10, padding: 10, marginBottom: 10}]}>
             <TouchableOpacity onPress={() => {navigation.navigate("Family", {id: item.id, name: name, photoUrl: item.photoUrl})}}>
-                <View style={[ basicCompStyles.flexColumnCC]}>
+                <View style={[ basicCompStyles.flexRowNC]}>
                     {this.renderUserImage(item.photoUrl)}
-                    {/* <View style={[basicCompStyles.flexColumnCC]}> */}
+                    <View style={{paddingLeft: 20, paddingTop: 10, alignSelf: "flex-start"}}>
                         <Text ellipsizeMode={'tail'} numberOfLines={1} style={[basicStyles.textBigSimple, {color: '#e1f5febb'}]}>{name}</Text>
                         <Text ellipsizeMode={'tail'} numberOfLines={1} style={[basicStyles.textSmallerLink, {color: '#b3e5fcbb'}]}>{ item._usersMeta.count + (item._usersMeta.count>1 ? " Members" : " Member") }</Text>
-                    {/* </View> */}
+                    </View>
                     {/* <View style={{elevation: 20}}> */}
                     {/* </View> */}
                 </View>

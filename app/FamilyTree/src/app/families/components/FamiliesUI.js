@@ -24,7 +24,7 @@ class FamiliesUI extends PureComponent {
                 <FlatList 
                     key={"family"}
                     listKey={"family"}
-                    numColumns={2}
+                    numColumns={1}
                     data={this.props.familyList}
                     keyExtractor={(item, index) => item.id}
                     renderItem={({item, index}) => <Family item={item} index={index} navigation={this.props.navigation}/>}

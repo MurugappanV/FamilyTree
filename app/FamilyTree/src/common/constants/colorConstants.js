@@ -15,11 +15,12 @@ const LIGHT_ORANGE = "#ffd1a9";
 const WHITE = "#ffffff";
 const WHITE50 = "#ffffff66";
 const BLACK = "#000000";
+const BLACK50 = "#00000066";
+const BLACK25 = "#00000028";
 
-
-export const BG_BASE_COLOR = WHITE50;
+export const BG_BASE_COLOR = BLACK50;
 export const BG_DARK_COLOR = DARK_BLUE;
-export const BG_BASE_COLOR_LIGHT = WHITER_GREY;
+export const BG_BASE_COLOR_LIGHT = BLACK25;
 export const BASE_SHADOW_COLOR = DARKER_GREY;
 export const HEADER_TEXT_COLOR = WHITE;
 export const DARK_IMAGE_COLOR = WHITE;
