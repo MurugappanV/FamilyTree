@@ -12,7 +12,7 @@ class AddFamilyUI extends PureComponent {
         super(props);
         let userDetails = props.userDetails;
             this.state = {name: ""};
-        
+    
     }
 
     selectImage = () => {

@@ -21,7 +21,6 @@ export default class App extends Component {
 
   render() {
     return (
-        
         <ApolloProvider client={client} store={store}>
             <Navigator />
         </ApolloProvider>

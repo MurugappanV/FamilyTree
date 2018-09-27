@@ -31,7 +31,7 @@ class AppContainer extends PureComponent {
             <Image style={[ basicStyles.deviceFullView, {position: 'absolute'}]}
                 source={require('../../../../assert/images/bg.png')}
             />
-            <Image style={[ basicStyles.deviceFullView, {position: 'absolute', tintColor: 'rgba(0, 0, 0, 0.3)'}]}
+            <Image style={[ basicStyles.deviceFullView, {position: 'absolute'}]}
                 source={require('../../../../assert/images/bg.png')}
             />
             <AppNavigator {...this.props} signOut={this.signOut}/>
