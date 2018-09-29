@@ -33,7 +33,6 @@ export const ORANGE_TEXT_COLOR = ORANGE;
 export const UNDERLINE_COLOR = DARK_ORANGE;
 
 export const PLACEHOLDER_COLOR = DARK_ORANGE;
-export const PROGRESS_BAR_COLOR = ORANGE;
 export const LIGHT_LIST_COLOR = WHITE;
 export const HIGHLIGHT_COLOR = LIGHT_ORANGE;
 export const DISABLE_COLOR = GREY;
@@ -41,3 +40,4 @@ export const DISABLE_COLOR = GREY;
 export const TEXT_PRIMARY_COLOR = WHITE
 export const TEXT_BRIGHT_COLOR = LIGHT_ORANGE
 export const CURSOR_COLOR = WHITE50;
+export const PROGRESS_BAR_COLOR = WHITE50;

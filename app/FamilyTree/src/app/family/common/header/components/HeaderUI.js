@@ -14,7 +14,7 @@ class HeaderUI extends PureComponent {
 
     render() {
         let {navigate} = this.props.navigation
-        return <View style={[basicStyles.homeHeaderContainer]}>
+        return <View style={[basicStyles.homeHeaderContainer, {backgroundColor: '#00000020'}]}>
             <View style={basicStyles.homeHeaderInnerContainer}>
                 <TouchableOpacity onPress={() => {}}>
                     {this.renderUserImage(this.props.familyImg)}

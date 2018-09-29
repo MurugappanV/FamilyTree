@@ -24,7 +24,7 @@ class Family extends PureComponent {
         const {item, index, navigation} = this.props;
         const name = item.name.toLowerCase().replace(/(^|\s)\S/g, l => l.toUpperCase());
         
-        return <View style={[{backgroundColor: colors.BG_BASE_COLOR_LIGHT, alignSelf: 'stretch', borderRadius: 10, padding: 10, marginBottom: 10}]}>
+        return <View style={[{backgroundColor: '#ffffff30', alignSelf: 'stretch', borderRadius: 10, padding: 10, marginBottom: 10}]}>
             <TouchableOpacity onPress={() => {navigation.navigate("Family", {id: item.id, name: name, photoUrl: item.photoUrl})}}>
                 <View style={[ basicCompStyles.flexRowNC]}>
                     {this.renderUserImage(item.photoUrl)}

@@ -6,7 +6,7 @@ class Headers extends PureComponent {
 
     render() {
         let {navigation, style} = this.props
-        return <View style={style}>
+        return <View style={[style, {backgroundColor: '#00000020'}]}>
             <View style={basicStyles.homeHeaderInnerContainer}>
                 <TouchableOpacity onPress={() => navigation.navigate("AboutUs")}>
                     <Image style={basicStyles.headerImage} source={require('../../../../assert/images/family-tree.png')} />

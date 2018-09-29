@@ -261,8 +261,7 @@ export const basicStyles = {
     ],
     homeHeaderContainer: [
         sizes.homeHeaderContainer,
-        basicCompStyles.bgBaseColor,
-        basicCompStyles.defaultElevation
+        basicCompStyles.bgBaseColor
     ],
     homeHeaderInnerContainer: [
         basicCompStyles.fullSize,

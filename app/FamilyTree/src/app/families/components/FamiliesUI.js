@@ -46,14 +46,14 @@ class FamiliesUI extends PureComponent {
     render() {
         let {navigation} = this.props
         return <View style={[basicStyles.deviceFullView]}>
-            <Headers {...this.props} style={[basicStyles.homeHeaderContainer, {elevation: 10}]}/>
+            <Headers {...this.props} style={[basicStyles.homeHeaderContainer]}/>
             <View style={[basicCompStyles.defaultPadding, {flex: 1}]}>
                 {this.renderFamilies()}
-                <TouchableOpacity style={[basicCompStyles.bgBaseColor, basicCompStyles.defaultPadding, basicCompStyles.defaultMarginTB, {height: 40, borderRadius: 20 }]} onPress={() => {navigation.navigate("AddFamily")}} >
-                    <Text style={[basicStyles.textWhiteSmall, basicCompStyles.alignTextCenter]}>{"ADD NEW FAMILY"}</Text>
+                <TouchableOpacity style={[basicCompStyles.bgBaseColor, basicCompStyles.defaultPadding, basicCompStyles.defaultMarginTB, {height: 40, borderRadius: 20, backgroundColor: '#ffffff60'}]} onPress={() => {navigation.navigate("AddFamily")}} >
+                    <Text style={[basicStyles.textWhiteSmall, basicCompStyles.alignTextCenter, {color: '#732673B0'}]}>{"ADD NEW FAMILY"}</Text>
                 </TouchableOpacity> 
                 <TouchableOpacity onPress={() => {this.props.signOut()}} > 
-                    <Text style={[basicStyles.textSmallerLink, basicCompStyles.aliginSelfC, {paddingBottom: 10}]}>{"Sign Out"}</Text>
+                    <Text style={[basicStyles.textSmallerLink, basicCompStyles.aliginSelfC, {paddingBottom: 10, color: '#732673'}]}>{"Sign Out"}</Text>
                 </TouchableOpacity> 
             </View>
         </View>
