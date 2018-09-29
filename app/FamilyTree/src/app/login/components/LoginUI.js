@@ -152,8 +152,8 @@ export default class LoginUI extends Component {
         const { children, userPhoneNumber, graphcoolTokenStatus, navigation } = this.props;    
         return (
             <View style={[basicCompStyles.fullSize, basicCompStyles.bgBaseColorLight]}>
-                {(graphcoolTokenStatus != 2) && !confirmResult && <PhoneNumberInput signIn={this.signIn} phoneNumber={userPhoneNumber} />}
-                {(graphcoolTokenStatus != 2) && confirmResult && <VerificationCodeInput  confirmCode={this.confirmCode} resendCode={this.resendCode} changeNumber={this.changeNumber}/>}
+                {(graphcoolTokenStatus != 2) && confirmResult && <PhoneNumberInput signIn={this.signIn} phoneNumber={userPhoneNumber} />}
+                {(graphcoolTokenStatus != 2) && !confirmResult && <VerificationCodeInput  confirmCode={this.confirmCode} resendCode={this.resendCode} changeNumber={this.changeNumber}/>}
                 {/* {!isSignOut && graphcoolTokenStatus == 2 && <LoginDetail signOut={this.signOut} navigation={this.props.navigation}></LoginDetail>} */}
             </View>
         );

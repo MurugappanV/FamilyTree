@@ -16,7 +16,7 @@ export default class PhoneNumberInput extends PureComponent {
                 <Text style={basicStyles.textBig}>Phone number verification</Text>
                 <View style={[basicCompStyles.fullSize, basicCompStyles.flexColumnCN]}>
                     <Image style={[basicStyles.bigImage, basicCompStyles.aliginSelfC]} source={require('../../../../assert/images/send.png')}/>
-                    <Text style={[basicStyles.textSmall, {paddingLeft: 5}]}>Please enter your phoneNumber</Text>
+                    <Text style={[basicStyles.textSmall, {paddingLeft: 5, marginTop: 20}]}>Please enter your phoneNumber</Text>
                     <TextInput
                         onSubmitEditing={() => this.props.signIn(this.state.phoneNumber)}
                         underlineColorAndroid={colors.UNDERLINE_COLOR} 
@@ -31,8 +31,8 @@ export default class PhoneNumberInput extends PureComponent {
                     />
                     <Text style={[basicStyles.textSmaller, {paddingLeft: 5}]}>We require phonenumber for customer communication and identification</Text>
                 </View>
-                <TouchableOpacity style={[basicCompStyles.bgDarkColor, basicCompStyles.defaultPadding, basicCompStyles.defaultMarginTB, {height: 40, borderRadius: 20 }]} onPress={() => this.props.signIn(this.state.phoneNumber)}>
-                    <Text style={[basicStyles.textWhiteSmall, basicCompStyles.alignTextCenter]}>Send OTP</Text>
+                <TouchableOpacity style={[{backgroundColor: 'white'}, basicCompStyles.defaultPadding, basicCompStyles.defaultMarginTB, {height: 40, borderRadius: 20 }]} onPress={() => this.props.signIn(this.state.phoneNumber)}>
+                    <Text style={[basicStyles.textWhiteSmall, basicCompStyles.alignTextCenter, {color: 'purple'}]}>Send OTP</Text>
                 </TouchableOpacity>
             </KeyboardAvoidingView>
         );

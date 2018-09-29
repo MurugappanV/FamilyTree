@@ -116,6 +116,13 @@ export const basicCompStyles = StyleSheet.create({
     darkTextColor: {
         color: colors.DARK_TEXT_COLOR
     },
+    lightTextColor: {
+        color: colors.TEXT_PRIMARY_COLOR
+    },
+    brightTextColor: {
+        color: colors.TEXT_BRIGHT_COLOR
+    },
+    
     whiteBgColor: {
         backgroundColor: colors.LIGHT_LIST_COLOR
     },
@@ -273,7 +280,7 @@ export const basicStyles = {
         basicCompStyles.defaultPaddingL
     ],
     textBig: [
-        basicCompStyles.darkTextColor,
+        basicCompStyles.lightTextColor,
         basicCompStyles.seperateItemPadding,
         basicCompStyles.alignTextCenter,
         compStyles.mainHeaderTextBig,
@@ -291,7 +298,7 @@ export const basicStyles = {
         fonts.default
     ],
     textSmall: [
-        basicCompStyles.normalTextColor,
+        basicCompStyles.lightTextColor,
         basicCompStyles.seperateItemPadding,
         compStyles.mainHeaderTextSmall,
         fonts.default
@@ -317,7 +324,7 @@ export const basicStyles = {
         fonts.default
     ],
     textInputSmall: [
-        basicCompStyles.darkTextColor,
+        basicCompStyles.brightTextColor,
         compStyles.mainHeaderTextSmall,
         sizes.defaultInputHeight,
         fonts.default
@@ -329,7 +336,7 @@ export const basicStyles = {
         fonts.default
     ],
     textSmaller: [
-        basicCompStyles.normalTextColor,
+        basicCompStyles.lightTextColor,
         compStyles.mainHeaderTextSmaller,
         fonts.default
     ],

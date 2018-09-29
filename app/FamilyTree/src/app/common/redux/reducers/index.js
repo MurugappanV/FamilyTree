@@ -6,6 +6,7 @@ import * as familyReducer from '../../../families/reducer/familyReducer';
 import * as addFamilyReducer from '../../../addFamily/reducers/addFamilyReducer';
 import * as familyDetReducer from '../../../family/reducer/familyReducer';
 import * as addMemberReducer from '../../../addMember/reducer/addMemberReducer';
+import * as startUpReducer from '../../../navigator/reducer/StartUpReducer';
 
 export default combineReducers(Object.assign(
     handleException,
@@ -14,5 +15,6 @@ export default combineReducers(Object.assign(
     familyReducer,
     addFamilyReducer,
     familyDetReducer,
-    addMemberReducer
+    addMemberReducer,
+    startUpReducer
 ));

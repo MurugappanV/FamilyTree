@@ -24,7 +24,7 @@ class AppContainer extends PureComponent {
     render() {
         return <View style={basicStyles.deviceFullView}>
             <StatusBar
-                backgroundColor="rgba(0, 0, 0, 0.2)"
+                backgroundColor="rgba(0, 0, 0, 0.1)"
                 barStyle="light-content"
                 translucent={true}
             />
@@ -43,7 +43,9 @@ class AppContainer extends PureComponent {
 function mapStateToProps(state) {
     return {
         userId: state.userId,
-        userDetails: state.userProfileDetail.userDetails
+        userDetails: state.userProfileDetail.userDetails,
+        startupStatus: state.startUpStatus,
+        userDetailStatus: state.userProfileDetail.userDetailLoadingStatus
     }
 }
 

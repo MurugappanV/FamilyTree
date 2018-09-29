@@ -5,9 +5,12 @@
  */
 
 import React, { Component } from 'react';
+import {View, ActivityIndicator} from 'react-native';
 import BaseNavigator from './BaseNavigator';
 import Login from '../../login';
 import UserDetails from '../../userDetail';
+import { basicCompStyles } from '../../../common/styles/styleSheet';
+import colors from '../../../common/constants/colors';
 
 
 export default class App extends Component {
@@ -15,14 +18,25 @@ export default class App extends Component {
         
     }
 
-    renderPage = (userId, userDetails) => {
+    renderLoading = () => {
+        return <View style={[basicCompStyles.defaultPadding, basicCompStyles.flexColumnCC, {flex: 1}]}>
+            <ActivityIndicator size="large" color={colors.PROGRESS_BAR_COLOR} />
+        </View>
+    }
+
+    renderPage = (userId, userDetails, startupStatus, userDetailStatus) => {
         console.log("in usr id - ", userId)
-        if(userId) {
-            
-            if(!!userDetails && !!userDetails.name) {
-                return <BaseNavigator {...this.props}/>
+        if(startupStatus == 1 || startupStatus == 0) {
+            return this.renderLoading()
+        } else if(userId) {
+            if(userDetailStatus == 1 || userDetailStatus == 0) {
+                return this.renderLoading()
             } else {
-                return <UserDetails {...this.props}/>
+                if(!!userDetails && !!userDetails.name) {
+                    return <BaseNavigator {...this.props}/>
+                } else {
+                    return <UserDetails {...this.props}/>
+                }
             }
         } else {
             return <Login {...this.props}/>
@@ -30,8 +44,8 @@ export default class App extends Component {
     }
 
     render() {
-        let {userId, userDetails} = this.props
+        let {userId, userDetails, startupStatus, userDetailStatus} = this.props
         console.log("in usr id 1 - ", userId)
-        return this.renderPage(userId, userDetails)
+        return this.renderPage(userId, userDetails, startupStatus, userDetailStatus)
   }
 }

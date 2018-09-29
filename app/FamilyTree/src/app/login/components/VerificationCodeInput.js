@@ -31,13 +31,13 @@ export default class VerificationCodeInput extends PureComponent {
                     value={this.state.codeInput}
                 />
                 <TouchableOpacity onPress={this.props.resendCode} >
-                    <Text style={[basicStyles.textSmallerLink, basicCompStyles.alignTextRight]}>Not received your OTP ?</Text>
+                    <Text style={[basicStyles.textSmallerLink, basicCompStyles.alignTextRight, {color: '#ffffcc'}]}>Not received your OTP ?</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={[basicCompStyles.bgDarkColor, basicCompStyles.defaultPadding, basicCompStyles.defaultMarginTB, basicCompStyles.spacingMarginT, {height: 40, borderRadius: 20 }]} onPress={() => this.props.confirmCode(this.state.codeInput)} >
-                    <Text style={[basicStyles.textWhiteSmall, basicCompStyles.alignTextCenter]}>Confirm OTP</Text>
+                <TouchableOpacity style={[basicCompStyles.bgDarkColor, basicCompStyles.defaultPadding, basicCompStyles.defaultMarginTB, basicCompStyles.spacingMarginT, {height: 40, borderRadius: 20, backgroundColor: 'white' }]} onPress={() => this.props.confirmCode(this.state.codeInput)} >
+                    <Text style={[ basicStyles.textWhiteSmall, basicCompStyles.alignTextCenter, {color: 'purple'}]}>Confirm OTP</Text>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={this.props.changeNumber} >
-                    <Text style={[basicStyles.textSmallerLink, basicCompStyles.aliginSelfC, {paddingBottom: 10}]}>Need to change phone number ?</Text>
+                    <Text style={[basicStyles.textSmallerLink, basicCompStyles.aliginSelfC, {paddingBottom: 10, color: '#ffffcc'}]}>Need to change phone number ?</Text>
                 </TouchableOpacity>
             </KeyboardAvoidingView>
             // </ScrollView>
