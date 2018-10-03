@@ -25,7 +25,7 @@ class Family extends PureComponent {
         const name = item.name.toLowerCase().replace(/(^|\s)\S/g, l => l.toUpperCase());
         
         return <View style={[{backgroundColor: '#ffffff30', alignSelf: 'stretch', borderRadius: 10, padding: 10, marginBottom: 10}]}>
-            <TouchableOpacity onPress={() => {navigation.navigate("Family", {id: item.id, name: name, photoUrl: item.photoUrl})}}>
+            <TouchableOpacity onPress={() => {navigation.navigate("TreeView")}}>
                 <View style={[ basicCompStyles.flexRowNC]}>
                     {this.renderUserImage(item.photoUrl)}
                     <View style={{paddingLeft: 20, paddingTop: 10, alignSelf: "flex-start"}}>
@@ -40,4 +40,4 @@ class Family extends PureComponent {
     }
 }
 
-export default Family;
+export default Family;// "Family", {id: item.id, name: name, photoUrl: item.photoUrl}

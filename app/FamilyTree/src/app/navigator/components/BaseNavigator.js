@@ -8,6 +8,7 @@ import Header from "../../family/common/header";
 import AddMember from "../../addMember";
 import List from "../../family/list";
 import Display from "../../family/display";
+import { TreeView } from "../../treeView";
 // import Login from "../../login";
 // import AboutUs from "../../aboutUs";
 // import UserDetails from "../../userDetail";
@@ -34,6 +35,9 @@ const BaseNavigator = StackNavigator({
     },
     AddMember: {
         screen: AddMember
+    },
+    TreeView: {
+        screen: TreeView,
     }
 }, {
     cardStyle: { backgroundColor: "transparent" },
