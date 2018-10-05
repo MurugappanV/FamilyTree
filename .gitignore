@@ -2,3 +2,5 @@
 backend/FamilyTree/node_modules/
 
 app/FamilyTree/ios/Pods/
+
+\.DS_Store

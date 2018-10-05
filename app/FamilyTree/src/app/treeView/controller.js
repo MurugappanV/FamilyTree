@@ -8,7 +8,7 @@ export class TreeView extends Component {
   render() {
     return (
       <WebView
-        source={{uri: 'http://172.23.230.33:3000/'}}
+        source={{uri: 'http://192.168.43.59:3000/'}}
       />
     );
   }
