@@ -8,20 +8,24 @@ class UserCarousel extends PureComponent {
         super(props)
     }
 
-    renderUserImage = (imageUrl) => {
+    renderUserImage = (imageUrl, gender) => {
         if(imageUrl && imageUrl.length > 0) {
             return <Image style={[ basicCompStyles.defaultPadding, {borderRadius: 25, width: 50, height: 50}]} source={{uri : imageUrl}}/>
         } else {
-            return <Image style={[ basicCompStyles.defaultPadding, {borderRadius: 25, width: 50, height: 50}]} source={require('../../../../../assert/images/profile.png')}/>
+            if(gender == "male") {
+                return <Image style={[ basicCompStyles.defaultPadding, {borderRadius: 30, width: 60, height: 60}]} source={require('../../../../../assert/images/man.png')}/>
+            } else {
+                return <Image style={[ basicCompStyles.defaultPadding, {borderRadius: 30, width: 60, height: 60}]} source={require('../../../../../assert/images/woman.png')}/>
+            }
         }
     }
 
     renderItem = ({item, index}) => {
         return (
-            <View style={[basicCompStyles.flexColumnCC, basicCompStyles.defaultPadding, {height: 110, backgroundColor: "#fffffff20", borderRadius: 10}]}>
-                {this.renderUserImage(item.photoUrl)}
+            <View style={[basicCompStyles.flexColumnCC, basicCompStyles.defaultPadding, {height: 100, backgroundColor: "#ffffff20", borderRadius: 10}]}>
+                {this.renderUserImage(item.photoUrl, item.gender)}
                 <View>
-                    <Text style={{color: '#ffffffaa'}}>{ item.name }</Text>
+                    <Text style={{color: '#ffffff'}}>{ item.name }</Text>
                 </View>
             </View>
         );
@@ -29,8 +33,8 @@ class UserCarousel extends PureComponent {
 
     render() {
         const props = this.props;
-        return <View style={[basicStyles.deviceFullWidth, basicCompStyles.flexColumnCN, basicCompStyles.defaultPadding, {height: 160, marginBottom: 20, marginTop: 10}]}>
-            <Text ellipsizeMode={'tail'} numberOfLines={1} style={[basicStyles.textBigSimple, {color: '#fff'}]}>{props.title}</Text>
+        return <View style={[basicStyles.deviceFullWidth, basicCompStyles.flexColumnCN, basicCompStyles.defaultPadding, {height: 180, marginBottom: 20, marginTop: 10}]}>
+            <Text ellipsizeMode={'tail'} numberOfLines={1} style={[basicStyles.textBigSimple, {color: '#fff',backgroundColor: "#ffffff20", borderRadius: 10, marginBottom:10, paddingLeft:10, paddingBottom: 5, paddingTop: 5}]}>{props.title}</Text>
             <Carousel
                 ref={(c) => { this._carousel = c; }}
                 data={props.users}

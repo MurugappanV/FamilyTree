@@ -168,7 +168,7 @@ export default class UserDetailUI extends PureComponent {
                     // showIcon={false}
                     customStyles={{
                         dateInput: {borderWidth: 0, marginLeft: 36, justifyContent: 'center'},
-                        dateText: {color : colors.DARK_TEXT_COLOR},
+                        dateText: {color : '#ffd1a9'},
                         placeholderText: {color : colors.PLACEHOLDER_COLOR},
                         dateIcon: {
                             position: 'absolute',
@@ -205,7 +205,7 @@ export default class UserDetailUI extends PureComponent {
                                 index={i}
                                 labelHorizontal={true}
                                 onPress={(value) => {this.setState({gender:value})}}
-                                labelStyle={{fontSize: 16, color: colors.DARK_TEXT_COLOR}}
+                                labelStyle={{fontSize: 16, color: '#ffd1a9'}}
                                 labelWrapStyle={{marginLeft: 1}}
                             /> 
                         </RadioButton>
@@ -213,7 +213,7 @@ export default class UserDetailUI extends PureComponent {
                 </RadioForm>
                 <Text style={[basicStyles.textSmaller, basicCompStyles.smallSpacingMarginT]}>{"Address"}</Text>
                 <TextInput 
-                    style={[basicStyles.textAreaSmall, {textAlignVertical: 'top', borderWidth: 1, borderColor: colors.UNDERLINE_COLOR, marginTop: 5}]} 
+                    style={[basicStyles.textAreaSmall, {textAlignVertical: 'top', borderWidth: 1, borderColor: colors.UNDERLINE_COLOR, color: '#ffd1a9', marginTop: 5}]} 
                     multiline={true} 
                     numberOfLines={4} 
                     onChangeText={(address) => this.setState({address})} 
@@ -227,11 +227,11 @@ export default class UserDetailUI extends PureComponent {
                     placeholderTextColor={colors.PLACEHOLDER_COLOR} 
                 />
             </ScrollView>
-            <TouchableOpacity style={[basicCompStyles.bgDarkColor, basicCompStyles.defaultPadding, basicCompStyles.defaultMarginTB, basicCompStyles.spacingMarginT, {height: 40, borderRadius: 20 }]} onPress={this.saveManualEntry} >
-                <Text style={[basicStyles.textWhiteSmall, basicCompStyles.alignTextCenter]}>{"Save"}</Text>
+            <TouchableOpacity style={[basicCompStyles.bgDarkColor, basicCompStyles.defaultPadding, basicCompStyles.defaultMarginTB, basicCompStyles.spacingMarginT, {height: 40, borderRadius: 20, backgroundColor: '#ffffff60'}]} onPress={this.saveManualEntry} >
+                <Text style={[basicStyles.textWhiteSmall, basicCompStyles.alignTextCenter, {color: '#732673B0'}]}>{"Save"}</Text>
             </TouchableOpacity> 
             <TouchableOpacity onPress={this.signOut} > 
-                <Text style={[basicStyles.textSmallerLink, basicCompStyles.aliginSelfC, {paddingBottom: 10}]}>{"Sign Out"}</Text>
+                <Text style={[basicStyles.textSmallerLink, basicCompStyles.aliginSelfC, {paddingBottom: 10, color: '#732673'}]}>{"Sign Out"}</Text>
             </TouchableOpacity> 
         </View>
     }

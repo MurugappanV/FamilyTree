@@ -22,14 +22,14 @@ class CoupleDisplay extends PureComponent {
     render() {
         const {title, maleName, maleImg, femaleName, femaleImg} = this.props;
         return <View style={[basicStyles.deviceFullWidth, basicCompStyles.flexColumnCN, basicCompStyles.defaultPadding, {height: 110, marginBottom: 20, marginTop: 10}]}>
-            <Text ellipsizeMode={'tail'} numberOfLines={1} style={[basicStyles.textBigSimple, {color: '#fff'}]}>{title}</Text>
+            <Text ellipsizeMode={'tail'} numberOfLines={1} style={[basicStyles.textBigSimple, {color: '#fff',backgroundColor: "#ffffff20", borderRadius: 10, marginBottom:10, paddingLeft:10, paddingBottom: 5, paddingTop: 5}]}>{title}</Text>
             <View style={[basicCompStyles.flexRowNC, {paddingLeft: 10, paddingRight: 10}]}>
-                <View style={[basicCompStyles.flexColumnCC, basicCompStyles.defaultPadding]}>
+                <View style={[basicCompStyles.flexColumnCC, basicCompStyles.defaultPadding, {backgroundColor: "#ffffff20", borderRadius: 10}]}>
                     {this.renderUserImage(maleImg, "male")}
                     <Text ellipsizeMode={'tail'} numberOfLines={1} style={[basicStyles.textSmallerLink, {color: '#fff'}]}>{maleName}</Text>
                 </View>
                 <View style={{flex : 1}}></View>
-                <View  style={[basicCompStyles.flexColumnCC, basicCompStyles.defaultPadding]}>
+                <View  style={[basicCompStyles.flexColumnCC, basicCompStyles.defaultPadding, {backgroundColor: "#ffffff20", borderRadius: 10}]}>
                     {this.renderUserImage(femaleImg, "female")}
                     <Text ellipsizeMode={'tail'} numberOfLines={1} style={[basicStyles.textSmallerLink, {color: '#fff'}]}>{!femaleName ? "Mother" : femaleName}</Text>
                 </View>

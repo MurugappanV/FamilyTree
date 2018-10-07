@@ -117,8 +117,7 @@ export default class AddMemberUI extends PureComponent {
     render() {
         const {  profilePicStatus,  profilePicUrl} = this.props;
         return <View style={[basicCompStyles.fullSize, basicCompStyles.bgBaseColorLight, basicCompStyles.defaultPadding]}>
-            <Text style={[basicStyles.textSmaller, basicCompStyles.alignTextCenter, basicCompStyles.smallSpacingMarginT]}>{"Congrats, Logged in successfully!!!"}</Text>
-            <Text style={basicStyles.textBig}>{"User details"}</Text>
+            <Text style={basicStyles.textBig}>{"Add member"}</Text>
             {/* <TouchableOpacity onPress={() => {}}>
                 <Image style={[basicStyles.bigImage, basicCompStyles.aliginSelfC, basicCompStyles.smallSpacingMarginT, {borderRadius: width25pc}]} source={require('../../../../assets/images/profile.png')}/>
             </TouchableOpacity> */}
@@ -187,7 +186,7 @@ export default class AddMemberUI extends PureComponent {
                     // showIcon={false}
                     customStyles={{
                         dateInput: {borderWidth: 0, marginLeft: 36, justifyContent: 'center'},
-                        dateText: {color : colors.DARK_TEXT_COLOR},
+                        dateText: {color: '#ffd1a9'},
                         placeholderText: {color : colors.PLACEHOLDER_COLOR},
                         dateIcon: {
                             position: 'absolute',
@@ -224,7 +223,7 @@ export default class AddMemberUI extends PureComponent {
                                 index={i}
                                 labelHorizontal={true}
                                 onPress={(value) => {this.setState({gender:value})}}
-                                labelStyle={{fontSize: 16, color: colors.DARK_TEXT_COLOR}}
+                                labelStyle={{fontSize: 16, color: '#ffd1a9'}}
                                 labelWrapStyle={{marginLeft: 1}}
                             /> 
                         </RadioButton>
@@ -232,7 +231,7 @@ export default class AddMemberUI extends PureComponent {
                 </RadioForm>
                 <Text style={[basicStyles.textSmaller, basicCompStyles.smallSpacingMarginT]}>{"Address"}</Text>
                 <TextInput 
-                    style={[basicStyles.textAreaSmall, {textAlignVertical: 'top', borderWidth: 1, borderColor: colors.UNDERLINE_COLOR, marginTop: 5}]} 
+                    style={[basicStyles.textAreaSmall, {textAlignVertical: 'top', borderWidth: 1, color: '#ffd1a9', borderColor: colors.UNDERLINE_COLOR, marginTop: 5}]} 
                     multiline={true} 
                     numberOfLines={4} 
                     onChangeText={(address) => this.setState({address})} 
@@ -246,11 +245,11 @@ export default class AddMemberUI extends PureComponent {
                     placeholderTextColor={colors.PLACEHOLDER_COLOR} 
                 />
             </ScrollView>
-            <TouchableOpacity style={[basicCompStyles.bgDarkColor, basicCompStyles.defaultPadding, basicCompStyles.defaultMarginTB, basicCompStyles.spacingMarginT, {height: 40, borderRadius: 20 }]} onPress={this.saveManualEntry} >
-                <Text style={[basicStyles.textWhiteSmall, basicCompStyles.alignTextCenter]}>{"Add member"}</Text>
+            <TouchableOpacity style={[basicCompStyles.bgDarkColor, basicCompStyles.defaultPadding, basicCompStyles.defaultMarginTB, {height: 40, borderRadius: 20, backgroundColor: '#ffffff60' }]} onPress={this.saveManualEntry} >
+                <Text style={[basicStyles.textWhiteSmall, basicCompStyles.alignTextCenter, {color: '#732673B0'}]}>{"Add member"}</Text>
             </TouchableOpacity> 
             <TouchableOpacity onPress={() => this.props.navigation.goBack()} > 
-                <Text style={[basicStyles.textSmallerLink, basicCompStyles.aliginSelfC, {paddingBottom: 10}]}>{"Back"}</Text>
+                <Text style={[basicStyles.textSmallerLink, basicCompStyles.aliginSelfC, {paddingBottom: 10, color: '#732673'}]}>{"Back"}</Text>
             </TouchableOpacity> 
         </View>
     }

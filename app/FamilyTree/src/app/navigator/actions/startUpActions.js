@@ -35,6 +35,7 @@ export function clearTokenId() {
         AsyncStorage.removeItem('userId');
         dispatch({type: types.GRAPHCOOL_AUTH_TOKEN_CLEAR});
         dispatch({type: types.CLEAR_USER_ID});
+        dispatch({type: types.CLEAR_PROFILE_URL})
         dispatch({type: types.CLEAR_USER_DETAILS})
     }
 }

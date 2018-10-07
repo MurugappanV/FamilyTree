@@ -47,15 +47,21 @@ class ListUI extends PureComponent {
 
     onScrollFilter = (index, users) => {
         this.setState({filterIndex: index})
-        if(index = 1) {
-            this.setState({users: users.filter(user => user.wife == null && user.husband == null)})
-        } else if(index = 2) {
-            this.setState({users: users.filter(user => user.wife != null || user.husband != null)})
-        } else if(index = 3) {
-            this.setState({users: users.filter(user => user.gender != "MALE")})
-        } else if(index = 4) {
-            this.setState({users: users.filter(user => user.gender == "MALE")})
-        } 
+        console.log("users", users)
+        let filteredUsers = []
+        if(index == 1) {
+            filteredUsers = users.filter(user => user.wife.length == 0 && user.husband.length == 0)
+        } else if(index == 2) {
+            filteredUsers = users.filter(user => user.wife.length > 0 || user.husband.length > 0)
+        } else if(index == 3) {
+            filteredUsers = users.filter(user => user.gender != "MALE")
+        } else if(index == 4) {
+            filteredUsers = users.filter(user => user.gender == "MALE")
+        } else {
+            filteredUsers = users
+        }
+        console.log(index+"filtered users", filteredUsers)
+        this.setState({users: filteredUsers})
     }
 
     renderList = (props) => {
@@ -106,7 +112,7 @@ class ListUI extends PureComponent {
                 <ActivityIndicator size="large" color={colors.PROGRESS_BAR_COLOR} />
             </View>
         } else {
-            console.log("det - ", props.familyDetails)
+            console.log("det - ", this.state.users)
             return this.renderList(props)
         }
     }

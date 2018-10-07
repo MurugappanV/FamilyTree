@@ -51,9 +51,9 @@ class AddFamilyUI extends PureComponent {
         const { saveUserDetails, familyPicUploadStatus,  familyPicUrl} = this.props;
         return <View style={[basicCompStyles.fullSize, basicCompStyles.bgBaseColorLight, basicCompStyles.defaultPadding]}>
             <Text style={basicStyles.textBig}>{"Family details"}</Text>
-            <ScrollView style={basicCompStyles.fullSize} ref="scroll">
+            <View style={[basicCompStyles.fullSize, {justifyContent: 'center'}]} ref="scroll">
                 {this.renderImage(familyPicUploadStatus, familyPicUrl)}
-                <Text style={[basicStyles.textSmaller, basicCompStyles.smallSpacingMarginT]}>{"Family name"}</Text>
+                <Text style={[basicStyles.textSmaller, basicCompStyles.smallSpacingMarginT, {marginLeft: 30, marginRight: 30}]}>{"Family name"}</Text>
                 <TextInput
                     ref="nameInput"
                     onSubmitEditing={(event) => { 
@@ -63,15 +63,15 @@ class AddFamilyUI extends PureComponent {
                     autoCorrect={false}
                     underlineColorAndroid={colors.UNDERLINE_COLOR} 
                     selectionColor={colors.CURSOR_COLOR}
-                    style={basicStyles.textInputSmall}
+                    style={[basicStyles.textInputSmall, {marginLeft: 30, marginRight: 30}]}
                     onChangeText={value => this.setState({ name : value })}
                     placeholder={"Name"}
                     placeholderTextColor={colors.PLACEHOLDER_COLOR} 
                     value={this.state.name}
                 />
-            </ScrollView>
-            <TouchableOpacity style={[basicCompStyles.bgDarkColor, basicCompStyles.defaultPadding, basicCompStyles.defaultMarginTB, basicCompStyles.spacingMarginT, {height: 40, borderRadius: 20 }]} onPress={this.saveManualEntry} >
-                <Text style={[basicStyles.textWhiteSmall, basicCompStyles.alignTextCenter]}>{"Save"}</Text>
+            </View>
+            <TouchableOpacity style={[basicCompStyles.bgDarkColor, basicCompStyles.defaultPadding, basicCompStyles.defaultMarginTB, basicCompStyles.spacingMarginT, {height: 40, borderRadius: 20, backgroundColor: '#ffffff60' }]} onPress={this.saveManualEntry} >
+                <Text style={[basicStyles.textWhiteSmall, basicCompStyles.alignTextCenter, {color: '#732673B0'}]}>{"Save"}</Text>
             </TouchableOpacity> 
         </View>
     }
