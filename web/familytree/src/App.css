@@ -7,6 +7,12 @@
   height: 80px;
 }
 
+.container {
+  background-image: url(./images/bg.png);
+  background-size: cover;
+  height: 100vh;
+}
+
 .App-header {
   background-color: #222;
   height: 150px;

@@ -7,6 +7,10 @@
   
   .tree {
     white-space: nowrap;
+    background-image: url(./images/bg.png);
+    background-size: cover;
+    height: 100vh;
+    overflow: scroll;
   }
   
   .tree ul {
@@ -36,7 +40,7 @@
     position: absolute;
     top: 0;
     right: 50%;
-    border-top: 1px solid #ccc;
+    border-top: 1px solid #fff;
     width: 50%;
     height: 20px;
   }
@@ -44,7 +48,7 @@
   .tree li::after {
     right: auto;
     left: 50%;
-    border-left: 1px solid #ccc;
+    border-left: 1px solid #fff;
   }
   
   /*We need to remove left-right connectors from elements without any siblings*/
@@ -66,7 +70,7 @@
   
   /*Adding back the vertical connector to the last nodes*/
   .tree li:last-child::before {
-    border-right: 1px solid #ccc;
+    border-right: 1px solid #fff;
     border-radius: 0 5px 0 0;
     -webkit-border-radius: 0 5px 0 0;
     -moz-border-radius: 0 5px 0 0;
@@ -84,18 +88,18 @@
     position: absolute;
     top: 0;
     left: 50%;
-    border-left: 1px solid #ccc;
+    border-left: 1px solid #fff;
     width: 0;
     height: 20px;
   }
   
   .tree li div {
-    border: 1px solid #ccc;
+    border: 1px solid #fff;
     padding: 5px 10px;
     text-decoration: none;
-    color: #666;
     font-family: arial, verdana, tahoma;
-    font-size: 11px;
+    font-size: 12px;
+    font-weight: 500;
     display: inline-block;
     min-width: 80px;
     min-height: 30px;
@@ -108,7 +112,7 @@
   }
   
   .tree li div .male {
-    background-color: lightblue;
+    background-color: rgba(0, 0, 0, 0.26);
     display: inline-block;
     width: 90px;
     padding: 10px;
@@ -116,10 +120,11 @@
     border-radius: 5px;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
+    color: #fff;
   }
   
   .tree li div .female {
-    background-color: lightpink;
+    background-color: rgba(0, 0, 0, 0.26);
     display: inline-block;
     width: 90px;
     padding: 10px;
@@ -127,10 +132,10 @@
     border-radius: 5px;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
+    color: #fff;
   }
   
   .tree li div .spacer {
-    background-color: lightblue;
     display: inline-block;
     width: 10px;
   }
@@ -145,17 +150,17 @@
   
   /*Time for some hover effects*/
   /*We will apply the hover effect to the lineage of the element also*/
-  .tree li div.non-leaf:hover,
+  /* .tree li div.non-leaf:hover,
   .tree li div.non-leaf:hover + ul li div {
     background: #c8e4f8;
     color: #000;
     border: 1px solid #94a0b4;
-  }
+  } */
   
   /*Connector styles on hover*/
-  .tree li div.non-leaf:hover + ul li::after,
+  /* .tree li div.non-leaf:hover + ul li::after,
   .tree li div.non-leaf:hover + ul li::before,
   .tree li div.non-leaf:hover + ul::before,
   .tree li div.non-leaf:hover + ul ul::before {
     border-color: #94a0b4;
-  }
+  } */

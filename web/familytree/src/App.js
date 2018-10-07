@@ -76,13 +76,13 @@ const refineData = (data) => {
 class App extends Component {
   render() {
     return (
-      <ApolloProvider client={client}>
-        <Query query={UsersGQL} >
+      <ApolloProvider client={client} style={{height: '100%'}}>
+        <Query query={UsersGQL} style={{height: '100%'}}>
           {({ loading, error, data }) => {
-            if (loading) return <p>Loading...</p>;
-            if (error) return <p>Error :(</p>;
+            if (loading) return <div className="container"><p>Loading...</p></div>;
+            if (error) return <div className="container"><p>Error :(</p></div>;
               console.log(refineData(data))
-            return <MyTreeView familyTree={refineData(data)}/>;
+            return <MyTreeView style={{height: '100%'}} familyTree={refineData(data)}/>;
           }}
         </Query>
       </ApolloProvider>
