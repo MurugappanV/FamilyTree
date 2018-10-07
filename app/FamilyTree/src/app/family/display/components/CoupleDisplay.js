@@ -7,27 +7,31 @@ class CoupleDisplay extends PureComponent {
         super(props)
     }
 
-    renderUserImage = (imageUrl) => {
+    renderUserImage = (imageUrl, gender) => {
         if(imageUrl && imageUrl.length > 0) {
             return <Image style={[ basicCompStyles.defaultPadding, {borderRadius: 30, width: 60, height: 60}]} source={{uri : imageUrl}}/>
         } else {
-            return <Image style={[ basicCompStyles.defaultPadding, {borderRadius: 30, width: 60, height: 60}]} source={require('../../../../../assert/images/profile.png')}/>
+            if(gender == "male") {
+                return <Image style={[ basicCompStyles.defaultPadding, {borderRadius: 30, width: 60, height: 60}]} source={require('../../../../../assert/images/man.png')}/>
+            } else {
+                return <Image style={[ basicCompStyles.defaultPadding, {borderRadius: 30, width: 60, height: 60}]} source={require('../../../../../assert/images/woman.png')}/>
+            }
         }
     }
 
     render() {
         const {title, maleName, maleImg, femaleName, femaleImg} = this.props;
         return <View style={[basicStyles.deviceFullWidth, basicCompStyles.flexColumnCN, basicCompStyles.defaultPadding, {height: 110, marginBottom: 20, marginTop: 10}]}>
-            <Text ellipsizeMode={'tail'} numberOfLines={1} style={[basicStyles.textSmallerLink]}>{title}</Text>
+            <Text ellipsizeMode={'tail'} numberOfLines={1} style={[basicStyles.textBigSimple, {color: '#fff'}]}>{title}</Text>
             <View style={[basicCompStyles.flexRowNC, {paddingLeft: 10, paddingRight: 10}]}>
                 <View style={[basicCompStyles.flexColumnCC, basicCompStyles.defaultPadding]}>
-                    {this.renderUserImage(maleImg)}
-                    <Text ellipsizeMode={'tail'} numberOfLines={1} style={[basicStyles.textSmallerLink]}>{maleName}</Text>
+                    {this.renderUserImage(maleImg, "male")}
+                    <Text ellipsizeMode={'tail'} numberOfLines={1} style={[basicStyles.textSmallerLink, {color: '#fff'}]}>{maleName}</Text>
                 </View>
                 <View style={{flex : 1}}></View>
                 <View  style={[basicCompStyles.flexColumnCC, basicCompStyles.defaultPadding]}>
-                    {this.renderUserImage(femaleImg)}
-                    <Text ellipsizeMode={'tail'} numberOfLines={1} style={[basicStyles.textSmallerLink]}>{!femaleName ? "Mother" : femaleName}</Text>
+                    {this.renderUserImage(femaleImg, "female")}
+                    <Text ellipsizeMode={'tail'} numberOfLines={1} style={[basicStyles.textSmallerLink, {color: '#fff'}]}>{!femaleName ? "Mother" : femaleName}</Text>
                 </View>
                 <View style={{position: 'absolute',elevation: 20, paddingBottom: 20, marginLeft: (fullWidth - 60)/ 2}}>
                     <Image style={[ basicCompStyles.defaultPadding, { width: 40, height: 40}]} source={require('../../../../../assert/images/family.png')}/>

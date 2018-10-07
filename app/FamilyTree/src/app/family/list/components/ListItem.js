@@ -7,11 +7,15 @@ import { getAge } from "../../../../common/utils/dateUtils";
 
 class ListItem extends PureComponent {
 
-    renderUserImage = (imageUrl) => {
+    renderUserImage = (imageUrl, gender) => {
         if(imageUrl && imageUrl.length > 0) {
             return <Image style={[ {borderRadius: 25, marginLeft: 5, width: 50, height: 50}]} source={{uri : imageUrl}}/>
         } else {
-            return <Image style={[ {borderRadius: 25, width: 50, height: 50}]} source={require('../../../../../assert/images/family.png')}/>
+            if(gender == "MALE") {
+                return <Image style={[ {borderRadius: 25, width: 50, height: 50}]} source={require('../../../../../assert/images/man.png')}/>
+            } else {
+                return <Image style={[ {borderRadius: 25, width: 50, height: 50}]} source={require('../../../../../assert/images/woman.png')}/>
+            }
         }
     }
 
@@ -23,12 +27,12 @@ class ListItem extends PureComponent {
         return <TouchableOpacity onPress={() => {navigation.navigate("Relation", {userId: item.id})}} style={{marginBottom: 10}}>
                 <View style={[ basicCompStyles.flexRowNC, basicCompStyles.defaultPadding, {backgroundColor: '#ffffff40', borderRadius: 10,  alignSelf: 'stretch'}]}>
                     <View>
-                        {this.renderUserImage(item.photoUrl)}
+                        {this.renderUserImage(item.photoUrl, item.gender)}
                     </View>
                     {/* <View style={[basicCompStyles.flexColumnCC, ]}> */}
                     <View style={basicCompStyles.flexColumnCN}>
-                        <Text ellipsizeMode={'tail'} numberOfLines={1} style={[basicStyles.textBigSimple, {paddingLeft: 15, color: '#e1f5febb'}]}>{name}</Text>
-                        <Text ellipsizeMode={'tail'} numberOfLines={1} style={[ {paddingLeft: 15, color: '#b3e5fcbb'}]}>{`Age : ${age}`}</Text>
+                        <Text ellipsizeMode={'tail'} numberOfLines={1} style={[basicStyles.textBigSimple, {paddingLeft: 15, color: '#ffffff'}]}>{name}</Text>
+                        <Text ellipsizeMode={'tail'} numberOfLines={1} style={[ {paddingLeft: 15, color: '#e1f5febb'}]}>{`Age : ${age}`}</Text>
                     </View>
                         {/* <Text ellipsizeMode={'tail'} numberOfLines={1} style={[basicStyles.textSmallerLink]}>{ item._usersMeta.count + " Members" }</Text> */}
                     {/* </View> */}
