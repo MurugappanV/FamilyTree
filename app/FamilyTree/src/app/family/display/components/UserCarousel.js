@@ -18,7 +18,7 @@ class UserCarousel extends PureComponent {
 
     renderItem = ({item, index}) => {
         return (
-            <View style={[basicCompStyles.flexColumnCC, basicCompStyles.defaultPadding, {height: 110, backgroundColor: "#00000040", borderRadius: 10}]}>
+            <View style={[basicCompStyles.flexColumnCC, basicCompStyles.defaultPadding, {height: 110, backgroundColor: "#fffffff20", borderRadius: 10}]}>
                 {this.renderUserImage(item.photoUrl)}
                 <View>
                     <Text style={{color: '#ffffffaa'}}>{ item.name }</Text>
@@ -30,7 +30,7 @@ class UserCarousel extends PureComponent {
     render() {
         const props = this.props;
         return <View style={[basicStyles.deviceFullWidth, basicCompStyles.flexColumnCN, basicCompStyles.defaultPadding, {height: 160, marginBottom: 20, marginTop: 10}]}>
-            <Text ellipsizeMode={'tail'} numberOfLines={1} style={[basicStyles.textSmallerLink]}>{props.title}</Text>
+            <Text ellipsizeMode={'tail'} numberOfLines={1} style={[basicStyles.textBigSimple, {color: '#fff'}]}>{props.title}</Text>
             <Carousel
                 ref={(c) => { this._carousel = c; }}
                 data={props.users}

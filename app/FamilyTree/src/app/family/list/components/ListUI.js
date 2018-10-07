@@ -17,12 +17,19 @@ class ListUI extends PureComponent {
             title = params.name;
             familyImg = params.photoUrl;
         }
-        this.state = {refreshing : false, title : title, familyImg : familyImg}
+        let users = null
+        if(!!props.familyDetails) {
+            users = props.familyDetails.users
+        }
+        this.state = {refreshing : false, title : title, familyImg : familyImg, filterIndex: 0, users: users}
     }
 
     componentWillUpdate(nextProps) {
         if(nextProps.familyDetailStatus == generalConstants.LOADED) {
             this.setState({refreshing: false})
+        }
+        if(!!nextProps.familyDetails && (!this.props.familyDetails || nextProps.familyDetails.users != this.props.familyDetails.users)) {
+            this.onScrollFilter(this.state.filterIndex, nextProps.familyDetails.users)
         }
     }
 
@@ -38,6 +45,19 @@ class ListUI extends PureComponent {
         );
     }
 
+    onScrollFilter = (index, users) => {
+        this.setState({filterIndex: index})
+        if(index = 1) {
+            this.setState({users: users.filter(user => user.wife == null && user.husband == null)})
+        } else if(index = 2) {
+            this.setState({users: users.filter(user => user.wife != null || user.husband != null)})
+        } else if(index = 3) {
+            this.setState({users: users.filter(user => user.gender != "MALE")})
+        } else if(index = 4) {
+            this.setState({users: users.filter(user => user.gender == "MALE")})
+        } 
+    }
+
     renderList = (props) => {
         return <View  style={basicStyles.deviceFullView}>
             <Header navigation={props.navigation} title={this.state.title} familyImg={this.state.familyImg}/>
@@ -45,10 +65,11 @@ class ListUI extends PureComponent {
                 ref={(c) => { this._carousel = c; }}
                 data={props.familyStatisticData}
                 renderItem={this.renderItem}
+                onSnapToItem={(slideIndex) => this.onScrollFilter(slideIndex, props.familyDetails.users)}
                 sliderWidth={fullWidth}
                 itemWidth={fullWidth - 160}
                 contentContainerCustomStyle={{height: 100}}
-                firstItem={1}
+                firstItem={0}
                 inactiveSlideScale={0.8}
                 containerCustomStyle={{paddingTop: 10, paddingBottom: 10 }}
             />
@@ -58,7 +79,7 @@ class ListUI extends PureComponent {
                     <FlatList 
                         key={"memberList"}
                         listKey={"memberList"}
-                        data={props.familyDetails.users}
+                        data={this.state.users}
                         keyExtractor={(item, index) => item.id}
                         renderItem={({item}) => <ListItem item={item} navigation={props.navigation}/>}
                         horizontal={false}

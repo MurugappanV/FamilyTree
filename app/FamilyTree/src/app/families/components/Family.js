@@ -25,13 +25,17 @@ class Family extends PureComponent {
         const name = item.name.toLowerCase().replace(/(^|\s)\S/g, l => l.toUpperCase());
         
         return <View style={[{backgroundColor: '#ffffff30', alignSelf: 'stretch', borderRadius: 10, padding: 10, marginBottom: 10}]}>
-            <TouchableOpacity onPress={() => {navigation.navigate("TreeView")}}>
+            <TouchableOpacity onPress={() => {navigation.navigate("Family", {id: item.id, name: name, photoUrl: item.photoUrl})}}>
                 <View style={[ basicCompStyles.flexRowNC]}>
                     {this.renderUserImage(item.photoUrl)}
-                    <View style={{paddingLeft: 20, paddingTop: 10, alignSelf: "flex-start"}}>
-                        <Text ellipsizeMode={'tail'} numberOfLines={1} style={[basicStyles.textBigSimple, {color: '#e1f5febb'}]}>{name}</Text>
-                        <Text ellipsizeMode={'tail'} numberOfLines={1} style={[basicStyles.textSmallerLink, {color: '#b3e5fcbb'}]}>{ item._usersMeta.count + (item._usersMeta.count>1 ? " Members" : " Member") }</Text>
+                    <View style={{flex:1, paddingLeft: 20, paddingTop: 10, alignSelf: "flex-start"}}>
+                        <Text ellipsizeMode={'tail'} numberOfLines={1} style={[basicStyles.textBigSimple, {color: '#ffffffff', fontSize: 27}]}>{name}</Text>
+                        <Text ellipsizeMode={'tail'} numberOfLines={1} style={[basicStyles.textSmallerLink, {color: '#ffffffff', fontSize: 16}]}>{ item._usersMeta.count + (item._usersMeta.count>1 ? " Members" : " Member") }</Text>
                     </View>
+                    <TouchableOpacity onPress={() => {navigation.navigate("TreeView")}} style={{padding: 10}}>
+                        <Image style={{width:40, height: 40}} source={require('../../../../assert/images/tree.png')}/>
+                    </TouchableOpacity>
+                    {/* <Image style={{width:50, height: 50}} source={require('../../../../assert/images/tree.png')}/> */}
                     {/* <View style={{elevation: 20}}> */}
                     {/* </View> */}
                 </View>

@@ -9,6 +9,13 @@ export const familyDetail = gql`
                 name
                 photoUrl
                 dateOfBirth
+                gender
+                husband {
+                    id
+                }
+                wife {
+                    id
+                }
             }
             totalCount: _usersMeta {
                 count

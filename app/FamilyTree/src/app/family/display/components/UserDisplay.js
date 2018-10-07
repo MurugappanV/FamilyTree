@@ -20,8 +20,8 @@ class UserDisplay extends PureComponent {
         return <View style={[basicStyles.deviceFullWidth, basicCompStyles.flexColumnCN, {height: 110, marginBottom: 20, marginTop: 10}]}>
             <View style={[basicCompStyles.flexColumnCC, {backgroundColor: 'white', borderRadius: 10, elevation: 10, marginLeft: 60, paddingLeft: 50, paddingTop: 10, paddingBottom: 10, marginRight:10,  alignSelf: 'stretch'}]}>
                 <Text ellipsizeMode={'tail'} numberOfLines={1} style={[basicStyles.textBigSimple]}>{name.toLowerCase().replace(/(^|\s)\S/g, l => l.toUpperCase())}</Text>
-                <Text ellipsizeMode={'tail'} numberOfLines={1} style={[basicStyles.textSmallerLink]}>{email.toLowerCase()}</Text>
-                <Text ellipsizeMode={'tail'} numberOfLines={1} style={[basicStyles.textSmallerLink]}>{phoneNo}</Text>
+                <Text ellipsizeMode={'tail'} numberOfLines={1} style={[basicStyles.textSmallerLink, {color: '#840084'}]}>{email.toLowerCase()}</Text>
+                <Text ellipsizeMode={'tail'} numberOfLines={1} style={[basicStyles.textSmallerLink, {color: '#840084'}]}>{phoneNo}</Text>
             </View>
             <View style={{position: 'absolute',elevation: 20, marginLeft: 10}}>
                 {this.renderUserImage(imageUrl)}
