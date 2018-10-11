@@ -7,6 +7,35 @@ import * as generalConstants from "../../../common/constants/generalConstants";
 import colors from '../../../common/constants/colors';
 import Toast from 'react-native-simple-toast';
 import RadioForm, {RadioButton, RadioButtonInput, RadioButtonLabel} from 'react-native-simple-radio-button';
+import { Picker } from "./picker";
+
+const options = [
+    {
+      key: 'kenya',
+      label: 'Kenya',
+      searchKey: 'Africa',
+    },
+    {
+      key: 'uganda',
+      label: 'Uganda',
+      searchKey: 'Africa',
+    },
+    {
+      key: 'libya',
+      label: 'Libya',
+      searchKey: 'Africa',
+    },
+    {
+      key: 'japan',
+      label: 'Japan',
+      searchKey: 'Asia',
+    },
+    {
+      key: 'estonia',
+      label: 'Estonia',
+      searchKey: 'Europe',
+    },
+  ];
 
 const validateEmail = (emailInput) => {
     let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/ ;
@@ -51,16 +80,12 @@ export default class AddMemberUI extends PureComponent {
         } else if(this.state.phoneNumber.length == 0) {
             Toast.show("Please enter phone number", Toast.LONG)
             this.refs.phInput.focus(); 
-        } else if (!validateEmail(this.state.email)) {
+        } else if (this.state.email.trim().length != 0 && !validateEmail(this.state.email)) {
             Toast.show("Please enter valid email id", Toast.LONG)
             this.refs.emailInput.focus(); 
         } else if (this.state.date.length == 0) {
             Toast.show("Please select birth date", Toast.LONG)
             this.refs.scroll.scrollToEnd()
-        } else if (this.state.address.length == 0) {
-            Toast.show("Please enter address", Toast.LONG)
-            this.refs.scroll.scrollToEnd()
-            this.refs.addressInput.focus()
         } else {
             const dob = new Date(this.state.date);
             const dobStr = dob.toISOString();
@@ -139,6 +164,8 @@ export default class AddMemberUI extends PureComponent {
                     placeholderTextColor={colors.PLACEHOLDER_COLOR} 
                     value={this.state.name}
                 />
+                <Text style={[basicStyles.textSmaller, basicCompStyles.smallSpacingMarginT]}>{"Father name"}</Text>
+                <Picker options={options}/>
                 <Text style={[basicStyles.textSmaller, basicCompStyles.smallSpacingMarginT]}>{"Phone number"}</Text>
                 <TextInput
                     ref="phInput"

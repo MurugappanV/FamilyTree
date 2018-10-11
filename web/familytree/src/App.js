@@ -1,28 +1,37 @@
 import React, { Component } from 'react';
-// import logo from './logo.svg';
 import './App.css';
 import { ApolloProvider } from "react-apollo";
 import {client} from './Apollo';
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
-// import {familyTree} from './MyTreeData';
-import {MyTreeView} from './MyTreeView';
+import MyTreeView from './MyTreeView';
+import history from './history';
+import { addUrlProps, UrlQueryParamTypes } from 'react-url-query';
 
 const UsersGQL = gql`
-{
-  allUsers(filter: {families_some: {id: "cjiqdtajzeej90103krdzq5sx"}}) {
+query AllUsers($id: ID!){
+  allUsers(filter: {families_some: {id: $id}}) {
     id
     name
     gender
     dateOfBirth
-    child {
+    photoUrl
+    child(filter: {families_some: {id: $id}}) {
       id
     }
-    wife {
+    wife(filter: {families_some: {id: $id}}) {
       id
       name
+      dateOfBirth
+      photoUrl
 		}
-    father {
+    husband(filter: {families_some: {id: $id}}) {
+      id
+      name
+      dateOfBirth
+      photoUrl
+		}
+    father(filter: {families_some: {id: $id}}) {
       id
     }
   }
@@ -35,12 +44,15 @@ const getUserData = (user, userMap) => {
     ...user.gender==="MALE" && {
       he: {
         name: user.name,
-        born: 2018
+        born: user.dateOfBirth,
+        photoUrl: user.photoUrl
       },
       ...user.wife.length > 0 && {
         she: {
           name: user.wife[0].name,
-          born: 2018
+          born: user.wife[0].dateOfBirth,
+          photoUrl: user.wife[0].photoUrl
+
         }
       },
       ...user.child.length > 0 && {
@@ -52,7 +64,21 @@ const getUserData = (user, userMap) => {
     ...user.gender==="FEMALE" && {
       she: {
         name: user.name,
-        born: 2018
+        born: user.dateOfBirth,
+        photoUrl: user.photoUrl
+      },
+      ...user.husband.length > 0 && {
+        he: {
+          name: user.husband[0].name,
+          born: user.husband[0].dateOfBirth,
+          photoUrl: user.husband[0].photoUrl
+
+        }
+      },
+      ...user.child.length > 0 && {
+        children: user.child.map(child => {
+          return getUserData(userMap.get(child.id), userMap)
+        })
       }
     }
   }
@@ -62,7 +88,7 @@ const refineData = (data) => {
   let userMap = new Map()
   let alphaUsers = []
   data.allUsers.forEach(user => {
-    if(user.father == null && user.gender === "MALE") {
+    if(user.father == null && ((user.gender === "MALE" && (user.wife.length === 0 || user.wife[0].father == null)) || (user.gender === "FEMALE" && user.husband.length === 0))) {
       alphaUsers.push(user)
     } else {
       userMap.set(user.id, user)
@@ -73,11 +99,22 @@ const refineData = (data) => {
   })
 }
 
+const urlPropsQueryConfig = {
+  id: { type: UrlQueryParamTypes.string }
+};
+
 class App extends Component {
+  componentDidMount() {
+    // force an update if the URL changes
+    history.listen(() => this.forceUpdate());
+  }
+
   render() {
+    const id = this.props.id ? this.props.id : "cjiqdtajzeej90103krdzq5sx"
+    console.log("params", id )
     return (
       <ApolloProvider client={client} style={{height: '100%'}}>
-        <Query query={UsersGQL} style={{height: '100%'}}>
+        <Query query={UsersGQL} variables={{ id }} style={{height: '100%'}}>
           {({ loading, error, data }) => {
             if (loading) return <div className="container"><p>Loading...</p></div>;
             if (error) return <div className="container"><p>Error :(</p></div>;
@@ -90,7 +127,7 @@ class App extends Component {
   }
 }
 
-export default App;
+export default addUrlProps({ urlPropsQueryConfig })(App);
 
             // return data.allCourses.map(({ id, title, author, description, topic, url }) => (
             //   <div key={id}>
