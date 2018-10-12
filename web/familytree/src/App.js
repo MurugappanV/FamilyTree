@@ -24,6 +24,9 @@ query AllUsers($id: ID!){
       name
       dateOfBirth
       photoUrl
+      father(filter: {families_some: {id: $id}}) {
+        id
+      }
 		}
     husband(filter: {families_some: {id: $id}}) {
       id
@@ -118,7 +121,6 @@ class App extends Component {
           {({ loading, error, data }) => {
             if (loading) return <div className="container"><p>Loading...</p></div>;
             if (error) return <div className="container"><p>Error :(</p></div>;
-              console.log(refineData(data))
             return <MyTreeView style={{height: '100%'}} familyTree={refineData(data)}/>;
           }}
         </Query>
