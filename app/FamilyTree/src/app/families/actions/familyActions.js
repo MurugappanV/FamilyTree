@@ -10,6 +10,7 @@ export function uploadingImageUrl() {
 
 export const getFamilyByUserId = (userId) => {
     return (dispatch, getState) => {
+        console.log("Hi how are you")
         dispatch({type: types.FAMILY_DETAILS_LOADING});
         client.resetStore()
         client.query({

@@ -12,7 +12,7 @@ class AddFamily extends PureComponent {
 
     saveFamilyDetails = (name) => {
         this.props.saveFamilyDetails(this.props.userId, name, this.props.familyPicUrl)
-        this.props.getFamilyByUserId(this.props.userId)
+        // this.props.getFamilyByUserId(this.props.userId)
         this.props.navigation.dispatch({
             routeName: 'Families',
             type: 'GoToRoute',

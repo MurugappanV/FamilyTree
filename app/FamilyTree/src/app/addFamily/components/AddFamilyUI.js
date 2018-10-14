@@ -56,22 +56,20 @@ class AddFamilyUI extends PureComponent {
                 <Text style={[basicStyles.textSmaller, basicCompStyles.smallSpacingMarginT, {marginLeft: 30, marginRight: 30}]}>{"Family name"}</Text>
                 <TextInput
                     ref="nameInput"
-                    onSubmitEditing={(event) => { 
-                        this.saveManualEntry; 
-                    }}
+                    onSubmitEditing={this.saveManualEntry}
                     returnKeyType={"send"}
                     autoCorrect={false}
                     underlineColorAndroid={colors.UNDERLINE_COLOR} 
                     selectionColor={colors.CURSOR_COLOR}
                     style={[basicStyles.textInputSmall, {marginLeft: 30, marginRight: 30}]}
                     onChangeText={value => this.setState({ name : value })}
-                    placeholder={"Name"}
+                    placeholder={"Enter family name..."}
                     placeholderTextColor={colors.PLACEHOLDER_COLOR} 
                     value={this.state.name}
                 />
             </View>
-            <TouchableOpacity style={[basicCompStyles.bgDarkColor, basicCompStyles.defaultPadding, basicCompStyles.defaultMarginTB, basicCompStyles.spacingMarginT, {height: 40, borderRadius: 20, backgroundColor: '#ffffff60' }]} onPress={this.saveManualEntry} >
-                <Text style={[basicStyles.textWhiteSmall, basicCompStyles.alignTextCenter, {color: '#732673B0'}]}>{"Save"}</Text>
+            <TouchableOpacity style={[basicCompStyles.bgDarkColor, basicCompStyles.defaultPadding, basicCompStyles.defaultMarginTB, basicCompStyles.spacingMarginT, {height: 40, borderRadius: 20, backgroundColor: '#ffffffB0' }]} onPress={this.saveManualEntry} >
+                <Text style={[basicStyles.textWhiteSmall, basicCompStyles.alignTextCenter, {color: '#732673E0'}]}>{"Save"}</Text>
             </TouchableOpacity> 
         </View>
     }

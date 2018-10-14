@@ -32,7 +32,7 @@ class Family extends PureComponent {
                         <Text ellipsizeMode={'tail'} numberOfLines={1} style={[basicStyles.textBigSimple, {color: '#ffffffff', fontSize: 27}]}>{name}</Text>
                         <Text ellipsizeMode={'tail'} numberOfLines={1} style={[basicStyles.textSmallerLink, {color: '#ffffffff', fontSize: 16}]}>{ item._usersMeta.count + (item._usersMeta.count>1 ? " Members" : " Member") }</Text>
                     </View>
-                    <TouchableOpacity onPress={() => {navigation.navigate("TreeView")}} style={{padding: 10}}>
+                    <TouchableOpacity onPress={() => {navigation.navigate("TreeView", {id: item.id})}} style={{padding: 10}}>
                         <Image style={{width:40, height: 40}} source={require('../../../../assert/images/tree.png')}/>
                     </TouchableOpacity>
                     {/* <Image style={{width:50, height: 50}} source={require('../../../../assert/images/tree.png')}/> */}

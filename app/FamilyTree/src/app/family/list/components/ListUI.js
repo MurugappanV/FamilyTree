@@ -1,6 +1,6 @@
 import React, {PureComponent} from "react";
-import {View, Image, Text, TouchableOpacity, FlatList, ActivityIndicator} from 'react-native';
-import { basicStyles, basicCompStyles, fullWidth } from "../../../../common/styles/styleSheet";
+import {View, Image, Text, StyleSheet, TouchableOpacity, FlatList, ActivityIndicator} from 'react-native';
+import { basicStyles,  basicCompStyles, fullWidth } from "../../../../common/styles/styleSheet";
 import * as generalConstants from "../../../../common/constants/generalConstants";
 import ListItem from "./ListItem";
 import colors from "../../../../common/constants/colors";
@@ -87,7 +87,7 @@ class ListUI extends PureComponent {
                         listKey={"memberList"}
                         data={this.state.users}
                         keyExtractor={(item, index) => item.id}
-                        renderItem={({item}) => <ListItem item={item} navigation={props.navigation}/>}
+                        renderItem={({item}) => <ListItem familyId={props.familyId} item={item} navigation={props.navigation}/>}
                         horizontal={false}
                         refreshing={this.state.refreshing}
                         onRefresh={() => {
@@ -96,12 +96,15 @@ class ListUI extends PureComponent {
                         }}
                     />
                 </View>
-                <TouchableOpacity style={[basicCompStyles.bgBaseColor, basicCompStyles.defaultPadding, basicCompStyles.defaultMarginTB, {height: 40, borderRadius: 20, backgroundColor: '#ffffff60', marginLeft: 20, marginRight: 20 }]} onPress={() => {props.navigation.navigate("AddMember", {familyId: props.familyId})}} >
+                <TouchableOpacity style={styles.floatButton} onPress={() => {props.navigation.navigate("AddMember", {familyId: props.familyId})}}>
+                    <Text style={{color: '#732673B0', fontSize: 30}}>{"+"}</Text>
+                </TouchableOpacity>
+                {/* <TouchableOpacity style={[basicCompStyles.bgBaseColor, basicCompStyles.defaultPadding, basicCompStyles.defaultMarginTB, {height: 40, borderRadius: 20, backgroundColor: '#ffffff60', marginLeft: 20, marginRight: 20 }]} onPress={() => {props.navigation.navigate("AddMember", {familyId: props.familyId})}} >
                     <Text style={[basicStyles.textWhiteSmall, basicCompStyles.alignTextCenter, {color: '#732673B0'}]}>{"ADD NEW MEMBER"}</Text>
                 </TouchableOpacity> 
                 <TouchableOpacity onPress={() => {props.navigation.goBack()}} > 
                     <Text style={[basicStyles.textSmallerLink, basicCompStyles.aliginSelfC, {paddingBottom: 10, color: '#732673'}]}>{"Back"}</Text>
-                </TouchableOpacity> 
+                </TouchableOpacity>  */}
             </View>
         </View>
     }
@@ -125,3 +128,20 @@ class ListUI extends PureComponent {
 }
 
 export default ListUI;
+
+const styles = StyleSheet.create({
+    floatButton: {
+        width: 50,
+        height: 50,
+        borderRadius: 25,
+        bottom: 20,
+        right: 20,
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        alignContent: 'center',
+        backgroundColor: '#ffffff60',
+        position: 'absolute',
+        elevation: 1
+    },
+})

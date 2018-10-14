@@ -13,9 +13,12 @@ class HeaderUI extends PureComponent {
     }
 
     render() {
-        let {navigate} = this.props.navigation
+        let {navigate, goBack} = this.props.navigation
         return <View style={[basicStyles.homeHeaderContainer, {backgroundColor: '#00000020'}]}>
             <View style={basicStyles.homeHeaderInnerContainer}>
+                <TouchableOpacity onPress={() => goBack()} style={{marginRight: 10}}>
+                    <Image tintColor={'#ffffffB0'} style={basicStyles.headerImage} source={require('../../../../../../assert/images/back.png')}/>
+                </TouchableOpacity>
                 <TouchableOpacity onPress={() => {}}>
                     {this.renderUserImage(this.props.familyImg)}
                 </TouchableOpacity>

@@ -12,7 +12,7 @@ class UserCarousel extends PureComponent {
         if(imageUrl && imageUrl.length > 0) {
             return <Image style={[ basicCompStyles.defaultPadding, {borderRadius: 25, width: 50, height: 50}]} source={{uri : imageUrl}}/>
         } else {
-            if(gender == "male") {
+            if(gender == "MALE") {
                 return <Image style={[ basicCompStyles.defaultPadding, {borderRadius: 30, width: 60, height: 60}]} source={require('../../../../../assert/images/man.png')}/>
             } else {
                 return <Image style={[ basicCompStyles.defaultPadding, {borderRadius: 30, width: 60, height: 60}]} source={require('../../../../../assert/images/woman.png')}/>
@@ -22,12 +22,12 @@ class UserCarousel extends PureComponent {
 
     renderItem = ({item, index}) => {
         return (
-            <View style={[basicCompStyles.flexColumnCC, basicCompStyles.defaultPadding, {height: 100, backgroundColor: "#ffffff20", borderRadius: 10}]}>
+            <TouchableOpacity onPress={() => this.props.changeUser(item.id)} style={[basicCompStyles.flexColumnCC, basicCompStyles.defaultPadding, {height: 100, backgroundColor: "#ffffff20", borderRadius: 10}]}>
                 {this.renderUserImage(item.photoUrl, item.gender)}
                 <View>
                     <Text style={{color: '#ffffff'}}>{ item.name }</Text>
                 </View>
-            </View>
+            </TouchableOpacity>
         );
     }
 

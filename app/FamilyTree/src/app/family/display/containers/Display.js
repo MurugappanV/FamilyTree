@@ -17,12 +17,13 @@ class Profile extends PureComponent {
             const { params }  = props.navigation.state;
             props.getUserCloseRelation(params.userId)
             userId = params.userId
+            familyId = params.familyId
         }
-        this.state = {userId: userId}
+        this.state = {userId: userId, familyId: familyId}
     }
 
     render() {
-        return <FamilyDisplay {...this.props}/>
+        return <FamilyDisplay {...this.props} familyId={this.state.familyId}/>
     }
 }
 

@@ -20,11 +20,10 @@ class ListItem extends PureComponent {
     }
 
     render() {
-        const {item, navigation} = this.props;
+        const {item, navigation, familyId} = this.props;
         const name = item.name.toLowerCase().replace(/(^|\s)\S/g, l => l.toUpperCase());
         const age = getAge(item.dateOfBirth)
-        console.log("hhh---- ", item.name + "" + name);
-        return <TouchableOpacity onPress={() => {navigation.navigate("Relation", {userId: item.id})}} style={{marginBottom: 10}}>
+        return <TouchableOpacity onPress={() => {navigation.navigate("Relation", {userId: item.id, familyId: familyId})}} style={{marginBottom: 10}}>
                 <View style={[ basicCompStyles.flexRowNC, basicCompStyles.defaultPadding, {backgroundColor: '#ffffff40', borderRadius: 10,  alignSelf: 'stretch'}]}>
                     <View>
                         {this.renderUserImage(item.photoUrl, item.gender)}

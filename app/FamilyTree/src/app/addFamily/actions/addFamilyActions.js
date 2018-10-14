@@ -1,6 +1,7 @@
 import * as types from '../../common/redux/types';
 import client from '../../common/redux/apollo/client';
 import { createFamily } from '../graphql/quries';
+import { familiesByUserIdQuery } from '../../families/graphql/queries';
 
 export function setFamilyPicUrl(familyPicUrl) {
     return (dispatch, getState) => {
@@ -34,6 +35,19 @@ export function saveFamilyDetails(userId, name, photoUrl) {
             variables: {name: name, photoUrl: photoUrl, createById: userId, usersIds: userId}
         }).then((resp) => {
             if (resp.data) {
+                dispatch({type: types.FAMILY_DETAILS_LOADING});
+                client.resetStore()
+                client.query({
+                    query: familiesByUserIdQuery,
+                    variables: {id: userId}
+                }).then((resp) => {
+                    if (resp.data) {
+                        dispatch({type: types.FAMILY_DETAILS_LOADED, data: resp.data.allFamilies});
+                    }
+                    if(resp.errors) {
+                        dispatch({ type: types.FAMILY_DETAILS_ERROR, errors: resp.errors});
+                    }
+                })
                 dispatch({type: types.ADD_FAMILY_LOADED, data: resp.data.createFamily});
             }
             if(resp.errors) {

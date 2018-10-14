@@ -18,8 +18,13 @@ class AddMember extends PureComponent {
         // if(props.userDetails && props.userDetails.photoUrl != null) {
         //     this.props.setProfilePicUrl(props.userDetails.photoUrl)
         // }
+        let user = null
         console.log("add memb props - ", props)
-        
+        if(!!props.navigation.state.params) {
+            const { params }  = props.navigation.state;
+            user = params.user
+        }
+        this.state = {user: user}
     }
 
     componentWillUnmount() {
@@ -39,29 +44,35 @@ class AddMember extends PureComponent {
                 const { params }  = props.navigation.state;
                 familyId = params.familyId
             }
-            this.props.getFamilyDetails(familyId)
+            props.getFamilyDetails(familyId)
+            props.getUserCloseRelation(this.state.user.id)
             props.navigation.goBack()
         } 
     }
 
-    addMember = (phoneNumber, name, email, dob, address, gender) => {
+    addMember = (phoneNumber, name, email, dob, address, gender, fatherId, spouceId) => {
         let familyId;
         if(!!this.props.navigation.state.params) {
             const { params }  = this.props.navigation.state;
             console.log("famly id - " , params.familyId)
             familyId = params.familyId
         }
-        this.props.addUser(phoneNumber, name, email, this.props.profilePicUrl, dob, address, gender, familyId)
+        if(!!this.state.user) {
+            this.props.updateSaveUser(this.state.user.id, phoneNumber, name, email, this.props.profilePicUrl, dob, address, gender, fatherId, spouceId)    
+        } else {
+            this.props.addUser(phoneNumber, name, email, this.props.profilePicUrl, dob, address, gender, familyId, fatherId, spouceId)    
+        }
     }
 
     render() {
         // const {profilePicUrl, profilePicStatus, setProfilePicUrl, uploadingImageUrl} = this.props;
-        return <AddMemberUI {...this.props } addMember={this.addMember}/>
+        return <AddMemberUI user={this.state.user} {...this.props } addMember={this.addMember}/>
     }
 }
 
 function mapStateToProps(state) {
     return {
+        familyDetails: state.familyDetail.familyDetails,
         profilePicUrl: state.addMemPicUrl,
         profilePicStatus: state.addMemPicUploadStatus,
         addMemLoadingStatus: state.addMemDet.addMemLoadingStatus,

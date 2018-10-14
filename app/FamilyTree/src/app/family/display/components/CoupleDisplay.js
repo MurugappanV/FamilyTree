@@ -20,23 +20,23 @@ class CoupleDisplay extends PureComponent {
     }
 
     render() {
-        const {title, maleName, maleImg, femaleName, femaleImg} = this.props;
-        return <View style={[basicStyles.deviceFullWidth, basicCompStyles.flexColumnCN, basicCompStyles.defaultPadding, {height: 110, marginBottom: 20, marginTop: 10}]}>
+        const {title, maleName, maleImg, femaleName, femaleImg, changeUser, maleId, femaleId } = this.props;
+        return <View style={[basicStyles.deviceFullWidth, basicCompStyles.flexColumnCN, basicCompStyles.defaultPadding, {height: 110, marginBottom: 20, marginTop: 40}]}>
             <Text ellipsizeMode={'tail'} numberOfLines={1} style={[basicStyles.textBigSimple, {color: '#fff',backgroundColor: "#ffffff20", borderRadius: 10, marginBottom:10, paddingLeft:10, paddingBottom: 5, paddingTop: 5}]}>{title}</Text>
             <View style={[basicCompStyles.flexRowNC, {paddingLeft: 10, paddingRight: 10}]}>
-                <View style={[basicCompStyles.flexColumnCC, basicCompStyles.defaultPadding, {backgroundColor: "#ffffff20", borderRadius: 10}]}>
+                <TouchableOpacity onPress={() => changeUser(maleId)} style={[basicCompStyles.flexColumnCC, basicCompStyles.defaultPadding, {backgroundColor: "#ffffff20", borderRadius: 10}]}>
                     {this.renderUserImage(maleImg, "male")}
                     <Text ellipsizeMode={'tail'} numberOfLines={1} style={[basicStyles.textSmallerLink, {color: '#fff'}]}>{maleName}</Text>
-                </View>
+                </TouchableOpacity>
                 <View style={{flex : 1}}></View>
-                <View  style={[basicCompStyles.flexColumnCC, basicCompStyles.defaultPadding, {backgroundColor: "#ffffff20", borderRadius: 10}]}>
+                <TouchableOpacity onPress={() => changeUser(femaleId)}  style={[basicCompStyles.flexColumnCC, basicCompStyles.defaultPadding, {backgroundColor: "#ffffff20", borderRadius: 10}]}>
                     {this.renderUserImage(femaleImg, "female")}
                     <Text ellipsizeMode={'tail'} numberOfLines={1} style={[basicStyles.textSmallerLink, {color: '#fff'}]}>{!femaleName ? "Mother" : femaleName}</Text>
+                </TouchableOpacity>
+                <View style={{position: 'absolute',paddingBottom: 20,elevation: 20, marginLeft: (fullWidth - 60)/ 2}}>
+                    <Image style={[ basicCompStyles.defaultPadding, { width: 40, height: 40}]} source={require('../../../../../assert/images/ring.png')}/>
                 </View>
-                <View style={{position: 'absolute',elevation: 20, paddingBottom: 20, marginLeft: (fullWidth - 60)/ 2}}>
-                    <Image style={[ basicCompStyles.defaultPadding, { width: 40, height: 40}]} source={require('../../../../../assert/images/family.png')}/>
-                </View>
-                <View style={[{position: 'absolute', zIndex: -1, width: fullWidth - 90, marginLeft: 30, paddingBottom: 20, borderColor: '#ffffff40', borderTopWidth: 0.5, borderStyle: "dotted" }]} />
+                <View style={[{position: 'absolute', zIndex: -1, width: fullWidth - 90, marginLeft: 30, borderColor: '#ffffff60', borderTopWidth: 0.5, borderStyle: "dotted" }]} />
             </View>
             {/* <View style={[basicCompStyles.flexColumnCC, {backgroundColor: 'white', borderRadius: 10, elevation: 10, marginLeft: 60, paddingLeft: 50, paddingTop: 10, paddingBottom: 10, marginRight:10,  alignSelf: 'stretch'}]}>
                 <Text ellipsizeMode={'tail'} numberOfLines={1} style={[basicStyles.textBigSimple]}>{name.toLowerCase().replace(/(^|\s)\S/g, l => l.toUpperCase())}</Text>

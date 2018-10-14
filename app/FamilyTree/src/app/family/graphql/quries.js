@@ -44,6 +44,7 @@ export const userCloseRelation = gql`
             dateOfBirth
             email
             phoneNumber
+            address
             photoUrl
             father {
                 id
@@ -68,6 +69,12 @@ export const userCloseRelation = gql`
                 name
                 gender
                 photoUrl
+                child {
+                    id
+                    name
+                    gender
+                    photoUrl
+                }
             }
             wife {
                 id

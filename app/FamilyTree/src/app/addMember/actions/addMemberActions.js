@@ -1,5 +1,5 @@
 import * as types from '../../common/redux/types';
-import {createUser} from '../graphql/quries';
+import {createUser, updateUser} from '../graphql/quries';
 import client from '../../common/redux/apollo/client';
 
 export function setProfilePicUrl(profilePicUrl) {
@@ -32,15 +32,43 @@ export function uploadingImageUrl() {
     }
 }
 
-export function addUser(phoneNumber, name, email, photoUrl, dob, address, gender, familiesIds) {
+export function addUser(phoneNumber, name, email, photoUrl, dob, address, gender, familiesIds, fatherId, spouceId) {
     return (dispatch, getState) => {
         console.log(`${familiesIds}----${name}----${email}----${photoUrl}----${phoneNumber}----${dob}`)
+        const wifeIds= gender=="MALE" ? spouceId: []
+        const husbandIds= gender=="FEMALE" ? spouceId: []
         dispatch({type: types.UPLOADING_ADD_MEM});
         client.mutate({
             mutation: createUser,
-            variables: {phoneNumber: phoneNumber, name: name, email: email, photoUrl: photoUrl, dateOfBirth: dob, address: address, gender: gender, familiesIds: familiesIds}
+            variables: {phoneNumber: phoneNumber, name: name, email: email, photoUrl: photoUrl, dateOfBirth: dob, address: address, gender: gender, familiesIds: familiesIds, fatherId: fatherId, wifeIds: wifeIds, husbandIds: husbandIds}
         }).then((resp) => {
             if (resp.data.createUser) {
+                dispatch({type: types.UPLOADED_ADD_MEM, data: "Successfuly Added"});
+            }
+            if(resp.errors) {
+                let message = "Sorry, unexpected error !!!"
+                if(errors.message.includes('unique constraint')) {
+                    message = "Phone number already exist"
+                }
+                dispatch({ type: types.ERROR_ADD_MEM, data: message});
+            }
+        }).catch( (exception) => {
+            dispatch({ type: types.EXCEPTION, exception: exception});
+        });
+    }
+}
+
+export function updateSaveUser(id, phoneNumber, name, email, photoUrl, dob, address, gender, fatherId, spouceId) {
+    return (dispatch, getState) => {
+        console.log(`----${name}----${email}----${photoUrl}----${phoneNumber}----${dob}`)
+        const wifeIds= gender=="MALE" ? spouceId: []
+        const husbandIds= gender=="FEMALE" ? spouceId: []
+        dispatch({type: types.UPLOADING_ADD_MEM});
+        client.mutate({
+            mutation: updateUser,
+            variables: {id: id, phoneNumber: phoneNumber, name: name, email: email, photoUrl: photoUrl, dateOfBirth: dob, address: address, gender: gender, fatherId: fatherId, wifeIds: wifeIds, husbandIds: husbandIds}
+        }).then((resp) => {
+            if (resp.data.updateUser) {
                 dispatch({type: types.UPLOADED_ADD_MEM, data: "Successfuly Added"});
             }
             if(resp.errors) {

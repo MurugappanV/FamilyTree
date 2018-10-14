@@ -98,6 +98,7 @@ function getUserCloseRelation(userRelation) {
         email: userRelation.email,
         phoneNumber: userRelation.phoneNumber,
         photoUrl: userRelation.photoUrl,
+        address: userRelation.address,
         father: !userRelation.father ? null : {
             id: userRelation.father.id,
             name: userRelation.father.name,
@@ -139,7 +140,14 @@ function getUserCloseRelation(userRelation) {
                 gender: child.gender,
                 photoUrl: child.photoUrl,
             }
-        }),
+        }).concat(!userRelation.husband[0] ? [] : userRelation.husband[0].child.map(child => {
+            return {
+                id: child.id,
+                name: child.name,
+                gender: child.gender,
+                photoUrl: child.photoUrl,
+            }
+        })),
         siblings: !userRelation.father ? [] : userRelation.father.child.map(child => {
             if(child.id != userRelation.id) {
                 return {

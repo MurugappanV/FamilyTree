@@ -1,5 +1,5 @@
 import React, {PureComponent} from "react";
-import {View, Image, Text, TouchableOpacity, FlatList, ActivityIndicator} from 'react-native';
+import {View, ScrollView, Text, TouchableOpacity, FlatList, ActivityIndicator} from 'react-native';
 import { basicStyles, basicCompStyles, fullWidth } from "../../../../common/styles/styleSheet";
 import * as generalConstants from "../../../../common/constants/generalConstants";
 // import ListItem from "./ListItem";
@@ -19,16 +19,22 @@ class FamilyDisplay extends PureComponent {
 
     }
 
+    changeUser = (userId) => {
+        this.props.getUserCloseRelation(userId)
+    }
+
 
     renderRelation = (props) => {
         const user = props.userCloseRelation
         return <View style={basicStyles.deviceFullView}>
             <Header navigation={props.navigation} title={"Close Relations"} familyImg={""}/>
-            <UserDisplay name={user.name} imageUrl={user.photoUrl} email={user.email} phoneNo={user.phoneNumber}/>
-            {user.father && <CoupleDisplay title={"Parents"} maleName={user.father.name} maleImg={user.father.photoUrl} femaleName={!user.mother ? null : user.mother.name} femaleImg={!user.mother ? null : user.mother.photoUrl}/>}
-            {user.husband && user.wife && <CoupleDisplay title={"Spouce"} maleName={user.husband.name} maleImg={user.husband.photoUrl} femaleName={user.wife.name} femaleImg={user.wife.photoUrl}/>}
-            {user.children.length > 0 && <UserCarousel title={"Children"} users={user.children}/>}
-            {user.siblings.length > 0 && <UserCarousel title={"Siblings"} users={user.siblings}/>}
+            <ScrollView>
+                <UserDisplay familyId={props.familyId} navigation={props.navigation} user={user} id={user.id} gender={user.gender} name={user.name} imageUrl={user.photoUrl} email={user.email} phoneNo={user.phoneNumber}/>
+                {user.father && <CoupleDisplay changeUser={this.changeUser} maleId={user.father.id} femaleId={!user.mother ? null : user.mother.id} title={"Parents"} maleName={user.father.name} maleImg={user.father.photoUrl} femaleName={!user.mother ? null : user.mother.name} femaleImg={!user.mother ? null : user.mother.photoUrl}/>}
+                {user.husband && user.wife && <CoupleDisplay changeUser={this.changeUser} maleId={user.husband.id} femaleId={user.wife.id} title={"Spouce"} maleName={user.husband.name} maleImg={user.husband.photoUrl} femaleName={user.wife.name} femaleImg={user.wife.photoUrl}/>}
+                {user.children.length > 0 && <UserCarousel changeUser={this.changeUser} title={"Children"} users={user.children}/>}
+                {user.siblings.length > 0 && <UserCarousel changeUser={this.changeUser} title={"Siblings"} users={user.siblings}/>}
+            </ScrollView>
         </View>
     }
     
