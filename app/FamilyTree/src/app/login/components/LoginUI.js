@@ -5,6 +5,7 @@ import Toast from 'react-native-simple-toast';
 import PhoneNumberInput from "./PhoneNumberInput";
 import VerificationCodeInput from "./VerificationCodeInput";
 import { basicCompStyles } from '../../../common/styles/styleSheet';
+import *  as GeneralConstants from '../../../common/constants/generalConstants';
 
 export default class LoginUI extends Component {
     constructor(props) {
@@ -36,7 +37,8 @@ export default class LoginUI extends Component {
         this.state = {
             confirmResult: null,
             isSignOut: isSignOut,
-            redirectTo: redirectTo
+            redirectTo: redirectTo,
+            checkPhoneNumber: null
         };
         this.navigate(isSignOut, props.graphcoolTokenStatus)
     }
@@ -70,21 +72,22 @@ export default class LoginUI extends Component {
     }
 
     signIn = (phoneNumber) => {
-        this.renderMessage('Sending code ...')
+        this.props.checkUser(phoneNumber)
+        this.setState({checkPhoneNumber: phoneNumber})
         console.log( "ph -- " + phoneNumber)
-        firebase.auth().signInWithPhoneNumber(phoneNumber)
-            .then(confirmResult => {
-                this.setState({
-                    confirmResult,
-                })
-                this.props.setPhoneNumber(phoneNumber)
-                this.renderMessage('Code has been sent!')
-            })
-            .catch(error => {
-                    let msg = error.message.substr(0, error.message.indexOf('.'))
-                    this.renderMessage(`Error during sign in : ${msg}`)
-                }
-            );
+        // firebase.auth().signInWithPhoneNumber(phoneNumber)
+        //     .then(confirmResult => {
+        //         this.setState({
+        //             confirmResult,
+        //         })
+        //         this.props.setPhoneNumber(phoneNumber)
+        //         this.renderMessage('Code has been sent!')
+        //     })
+        //     .catch(error => {
+        //             let msg = error.message.substr(0, error.message.indexOf('.'))
+        //             this.renderMessage(`Error during sign in : ${msg}`)
+        //         }
+        //     );
     };
 
     resendCode = () => {
@@ -130,13 +133,36 @@ export default class LoginUI extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        console.log(this.state.isSignOut + " + " + nextProps.graphcoolTokenStatus)
+        console.log("status", nextProps.checkUserStatus)
         this.navigate(this.state.isSignOut, nextProps.graphcoolTokenStatus)
         if (nextProps.graphcoolTokenStatus == -1) {
             this.renderMessage('Unable to get user details')
             this.setState({
                 confirmResult: null,
             });
+        }
+        if(nextProps.checkUserStatus == GeneralConstants.LOADED) {
+            this.renderMessage(`Sending code to ${this.state.checkPhoneNumber}...`)
+            firebase.auth().signInWithPhoneNumber(this.state.checkPhoneNumber)
+                .then(confirmResult => {
+                    console.log("confirmResult", confirmResult)
+                    this.setState({
+                        confirmResult,
+                    })
+                    this.props.setPhoneNumber(this.state.checkPhoneNumber)
+                    this.renderMessage('Code has been sent!')
+                    this.setState({checkPhoneNumber: null})
+                })
+                .catch(error => {
+                        let msg = error.message.substr(0, error.message.indexOf('.'))
+                        this.renderMessage(`Error during sign in : ${msg}`)
+                        this.setState({checkPhoneNumber: null})
+                    }
+                );
+            this.props.clearCheck()
+        } else if(nextProps.checkUserStatus == GeneralConstants.ERROR) {
+            this.renderMessage('This app is for closed community, please contact administrator +917904825982')
+            this.props.clearCheck()
         }
     }
 

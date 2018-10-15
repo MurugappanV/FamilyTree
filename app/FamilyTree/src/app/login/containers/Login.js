@@ -18,14 +18,15 @@ class Login extends PureComponent {
     }
 
     render() {
-        return <LoginUI userPhoneNumber={this.props.userRegisteredPhoneNumber} graphcoolTokenStatus={this.props.graphcoolTokenStatus} setPhoneNumber={this.setUserPhoneNumber} setTokenId={this.setTokenId} clearTokenId={this.props.clearTokenId} navigation={this.props.navigation}/>
+        return <LoginUI clearCheck={this.props.clearUserCheck} checkUser={this.props.checkUser} checkUserStatus={this.props.checkUserStatus} userPhoneNumber={this.props.userRegisteredPhoneNumber} graphcoolTokenStatus={this.props.graphcoolTokenStatus} setPhoneNumber={this.setUserPhoneNumber} setTokenId={this.setTokenId} clearTokenId={this.props.clearTokenId} navigation={this.props.navigation}/>
     }
 }
 
 function mapStateToProps(state) {
     return {
         userRegisteredPhoneNumber: state.userRegisteredPhoneNumber,
-        graphcoolTokenStatus: state.isGraphcoolTokenObtained
+        graphcoolTokenStatus: state.isGraphcoolTokenObtained,
+        checkUserStatus: state.checkUserStatus
     }
 }
 

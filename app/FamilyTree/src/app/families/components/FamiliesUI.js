@@ -78,6 +78,7 @@ const styles = StyleSheet.create({
         alignContent: 'center',
         backgroundColor: '#ffffff60',
         position: 'absolute',
-        elevation: 1
+        borderColor: '#cccccc',
+        borderWidth: 0.5
     },
 })

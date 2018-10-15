@@ -58,3 +58,18 @@ export const userProfileDetail = createReducer(initialUserDetail, {
         return initialUserDetail;
     },
 });
+
+export const checkUserStatus = createReducer(0, {
+    [types.USER_CHECK_LOADING](state, action) {
+         return GeneralConstants.LOADING
+    },
+    [types.USER_CHECK_LOADED](state, action) {
+        return  GeneralConstants.LOADED
+    },
+    [types.USER_CHECK_ERROR](state, action) {
+        return GeneralConstants.ERROR
+    },
+    [types.CLEAR_USER_CHECK](state, action) {
+        return 0;
+    },
+});

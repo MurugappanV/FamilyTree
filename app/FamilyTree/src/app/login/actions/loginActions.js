@@ -1,11 +1,35 @@
 import * as types from '../../common/redux/types';
 import client from '../../common/redux/apollo/client';
-import { authenticateUser, userByIdQuery } from '../graphql/quries';
+import { authenticateUser, userByIdQuery, isUser } from '../graphql/quries';
 import { AsyncStorage } from 'react-native'
 
 export function setPhoneNumber(phoneNumber) {
     return (dispatch, getState) => {
         dispatch({type: types.SET_PHONE_NUMBER, data: phoneNumber});
+    }
+}
+
+export function checkUser(phoneNumber) {
+    return (dispatch, getState) => {
+        dispatch({type: types.USER_CHECK_LOADING});
+        client.query({
+            query: isUser,
+            variables: {phoneNumber: phoneNumber}
+        }).then((resp) => {
+            if (resp.data.User) {
+                dispatch({type: types.USER_CHECK_LOADED});
+            } else {
+                dispatch({ type: types.USER_CHECK_ERROR});
+            }
+        }).catch( (exception) => {
+            dispatch({ type: types.EXCEPTION, exception: exception});
+        });
+    }
+}
+
+export function clearUserCheck() {
+    return (dispatch, getState) => {
+        dispatch({type: types.CLEAR_USER_CHECK});
     }
 }
 

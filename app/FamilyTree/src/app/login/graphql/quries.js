@@ -9,6 +9,14 @@ export const authenticateUser = gql`
     }
 `
 
+export const isUser = gql`
+    query User($phoneNumber: String) {
+        User(phoneNumber: $phoneNumber){
+            id
+        }
+    }
+`
+
 export const userByIdQuery = gql`
     query UserById($id : ID!) {
         User(id: $id) {
