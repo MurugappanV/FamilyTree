@@ -7,7 +7,7 @@ export function setUserIdStartUp() {
         dispatch({ type: types.START_UP_USER_ID_LOADING});
         AsyncStorage.getItem('userId').then(userId => {
             console.log("in us id - ", userId)
-            // userId = "cjiqdln9hee5p0103vq2suetl"
+            userId = "cjiqdln9hee5p0103vq2suetl"
             dispatch({ type: types.SET_USER_ID, data: userId});
             dispatch({ type: types.START_UP_USER_ID_LOADED});
             if(userId != null) {
